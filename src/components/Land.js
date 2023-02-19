@@ -4,6 +4,7 @@ import { LandContext } from "../context/LandContext";
 import { connectWallet } from "../utils/contractMethods";
 import { toast } from "react-toastify";
 import User from "./User";
+import Officer from "./Officer";
 
 const Land = () => {
   const { currentAccount, setCurrentAccount, manager, landOfficer } =
@@ -28,7 +29,10 @@ const Land = () => {
 
           ) : (
             currentAccount === landOfficer ? (
-              <Header as={"h3"}>Role: Land Officer</Header>
+              <Container>
+                <Header as={"h3"}>Role: Land Officer</Header>
+                <Officer />
+              </Container>
             ) : (<User />)
           )}
         </Container>

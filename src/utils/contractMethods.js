@@ -57,13 +57,25 @@ export const getUserInfo = async (address) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 export const checkUser = async (address) => {
   try {
     const userInfo = await getUserInfo(address);
     const int = parseInt(userInfo.userAddress);
     return int !== 0;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getAllUserNewUserRequests = async (address) => {
+  try {
+    const landContract = getLandContract();
+    const openNewUserRequests = await landContract.getOpenNewUserRequests(
+      address
+    );
+    return openNewUserRequests;
   } catch (error) {
     console.log(error);
   }
@@ -78,4 +90,14 @@ export const requestNewUser = async (aadhar, nominee) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
+
+export const getAllNewUserRequests = async () => {
+  try {
+    const landContract = getLandContract();
+    const requests = await landContract.getNewUserRequests();
+    return requests;
+  } catch (error) {
+    console.log(error);
+  }
+};

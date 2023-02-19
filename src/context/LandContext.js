@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { checkUser, getLandOfficer, getManager } from "../utils/contractMethods";
+import { checkUser, getAllUserNewUserRequests, getLandOfficer, getManager } from "../utils/contractMethods";
 
 export const LandContext = React.createContext();
 
@@ -12,6 +12,7 @@ export const LandProvider = ({ children }) => {
   const [manager, setManager] = useState("");
   const [landOfficer, setLandOfficer] = useState("");
   const [isUser, setIsUser] = useState(false);
+  const [openNewUserRequests, setOpenNewUserRequests] = useState([]);
 
   const checkIfWalletIsConnected = async () => {
     try {
@@ -34,11 +35,13 @@ export const LandProvider = ({ children }) => {
         const mngr = await getManager();
         const landOff = await getLandOfficer();
         const checkuser = await checkUser(currentAccount);
+        const openUserRequests = await getAllUserNewUserRequests(currentAccount);
         setManager(mngr);
         setLandOfficer(landOff);
         setIsUser(checkuser);
+        setOpenNewUserRequests(openUserRequests);
       } catch (error) {
-        console.log(error);
+        toast.error(error.message);
       }
     };
 
@@ -69,7 +72,8 @@ export const LandProvider = ({ children }) => {
         setCurrentAccount,
         manager,
         landOfficer,
-        isUser
+        isUser,
+        openNewUserRequests
       }}
     >
       <ToastContainer />
