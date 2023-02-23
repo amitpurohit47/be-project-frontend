@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Button, Container, Header } from "semantic-ui-react";
+import { Button, Container, Divider, Header } from "semantic-ui-react";
 import { LandContext } from "../context/LandContext";
 import { connectWallet } from "../utils/contractMethods";
 import { toast } from "react-toastify";
@@ -26,11 +26,12 @@ const Land = () => {
           <Header as="h2">Welcome: {currentAccount}</Header>
           {currentAccount === manager ? (
             <Header as={"h3"}>Role: Manager</Header>
-
-          ) : (
-            currentAccount === landOfficer ? (
-              <Container>
+            
+            ) : (
+              currentAccount === landOfficer ? (
+                <Container>
                 <Header as={"h3"}>Role: Land Officer</Header>
+                <Divider />
                 <Officer />
               </Container>
             ) : (<User />)
