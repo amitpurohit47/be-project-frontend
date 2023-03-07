@@ -14,7 +14,7 @@ function Home() {
     try {
       const res = await connectWallet();
       setCurrentAccount(res);
-    } catch (error) {
+    } catch (error) { 
       toast.error(error.message);
     }
   };

@@ -24,7 +24,7 @@ const Navbar = () => {
       >
         <li>Create Contract</li>
         <li>View Contracts</li>
-        <li>FAQ</li>
+        <li>Claim Assets</li>
         <li>Support</li>
       </ul>
     </nav>
