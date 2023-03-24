@@ -1,41 +1,15 @@
-import React from "react";
-import blob from "../../assets/images/blobanimation.svg";
+import React, { useContext } from "react";
 import Lottie from "react-lottie-player";
 import main from "../../assets/lottie/main.json";
 import PrimaryButton from "../utils/PrimaryButton";
 import SecondaryButton from "../utils/SecondaryButton";
-import Navbar from "../utils/Navbar";
+import { CryptoContext } from "../../context/CryptoContext";
 
 const Landing = () => {
+  const { currentAccount } = useContext(CryptoContext);
+
   return (
-    <div
-      className="overflow-hidden relative grid place-items-center h-screen w-screen"
-      style={{
-        backgroundColor: "rgba(34,15,104,255)",
-      }}
-    >
-      <div className="absolute w-screen h-screen">
-        <img
-          src={blob}
-          alt="blob"
-          style={{
-            transform: "translate(70%, -50%) scale(1.5)",
-            postion: "absolute",
-            userSelect: "none",
-          }}
-        />
-        <div
-          className="w-none h-none absolute"
-          style={{
-            borderTop: "250px solid transparent",
-            borderLeft: "500px solid rgba(59,42,142,255)",
-            bottom: "0",
-            left: "-5%",
-            zIndex: "0",
-          }}
-        ></div>
-      </div>
-      <Navbar />
+    <div className="relative grid place-items-center h-screen w-screen mt-4">
       <div
         className="flex items-center justify center text-white w-4/5"
         style={{
@@ -58,7 +32,9 @@ const Landing = () => {
               <div className="mr-2" style={{ marginRight: "20px" }}>
                 <PrimaryButton>View Products</PrimaryButton>
               </div>
-              <SecondaryButton>Connect Wallet</SecondaryButton>
+              {!currentAccount && (
+                <SecondaryButton>Connect Wallet</SecondaryButton>
+              )}
             </div>
           </div>
           <div>

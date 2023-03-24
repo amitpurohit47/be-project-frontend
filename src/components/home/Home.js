@@ -1,40 +1,27 @@
-import React, { useContext } from "react";
-import { Container, Header, Button } from "semantic-ui-react";
-import { Link } from "react-router-dom";
-import { LandContext } from "../../context/LandContext";
-import { connectWallet } from "../../utils/contractMethods";
-import { toast } from "react-toastify";
+import React from "react";
 import Landing from "./Landing";
+import { LocomotiveScrollProvider } from "react-locomotive-scroll";
+import { useRef } from "react";
+import Background from "./Background";
+import Navbar from "../utils/Navbar";
 
 function Home() {
-  const { currentAccount, setCurrentAccount, manager } =
-    useContext(LandContext);
+  const ref = useRef(null);
 
-  const handleConnect = async () => {
-    try {
-      const res = await connectWallet();
-      setCurrentAccount(res);
-    } catch (error) { 
-      toast.error(error.message);
-    }
-  };
-
-  const centerStyle = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "100vh",
-  };
-
-  const buttonStyle = {
-    margin: "20px",
+  const options = {
+    smooth: true,
   };
 
   return (
-    <div style={centerStyle}>
-      <Landing />
-    </div>
+    <LocomotiveScrollProvider options={options} containerRef={ref}>
+      <main data-scroll-container ref={ref}>
+        <Navbar />
+        <Background />
+        <section data-scroll-section>
+          <Landing />
+        </section>
+      </main>
+    </LocomotiveScrollProvider>
   );
 }
 
