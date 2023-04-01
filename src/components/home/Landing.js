@@ -4,6 +4,7 @@ import main from "../../assets/lottie/main.json";
 import PrimaryButton from "../utils/PrimaryButton";
 import SecondaryButton from "../utils/SecondaryButton";
 import { CryptoContext } from "../../context/CryptoContext";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
   const { currentAccount } = useContext(CryptoContext);
@@ -28,14 +29,9 @@ const Landing = () => {
               A new way to secure your digital assets and their futher
               descendants through Smart Contracts
             </p>
-            <div className="flex">
-              <div className="mr-2" style={{ marginRight: "20px" }}>
-                <PrimaryButton>View Products</PrimaryButton>
-              </div>
-              {!currentAccount && (
-                <SecondaryButton>Connect Wallet</SecondaryButton>
-              )}
-            </div>
+            <PrimaryButton>
+              <Link to="/dashboard">Try Our App →</Link>
+            </PrimaryButton>
           </div>
           <div>
             <Lottie

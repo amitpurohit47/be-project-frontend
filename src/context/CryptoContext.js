@@ -7,6 +7,7 @@ const { ethereum } = window;
 
 export const CryptoProvider = ({ children }) => {
   const [currentAccount, setcurrentAccount] = useState("");
+  const [isLoggedIn, setisLoggedIn] = useState(false);
 
   const checkIfWalletIsConnect = async () => {
     try {
@@ -15,7 +16,7 @@ export const CryptoProvider = ({ children }) => {
       const accounts = await ethereum.request({ method: "eth_accounts" });
 
       if (accounts.length) {
-        setcurrentAccount(accounts[0]);
+        setcurrentAccount(accounts[0].toLowerCase());
       } else {
         console.log("No accounts found");
       }
@@ -29,7 +30,14 @@ export const CryptoProvider = ({ children }) => {
   }, []);
 
   return (
-    <CryptoContext.Provider value={{ currentAccount, setcurrentAccount }}>
+    <CryptoContext.Provider
+      value={{
+        currentAccount,
+        setcurrentAccount,
+        isLoggedIn,
+        setisLoggedIn
+      }}
+    >
       <ToastContainer />
       {children}
     </CryptoContext.Provider>

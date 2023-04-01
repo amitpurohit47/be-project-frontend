@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../../assets/images/logo.png";
-import Auth from "./Auth";
 import Land from "./Land";
-import Home from "./Home";
 import Support from "./Support";
+import Auth from "./Auth";
 import Crypto from "./Crypto";
 import { Link } from "react-router-dom";
+import { CryptoContext } from "../../context/CryptoContext";
 
 const UserDashBoard = () => {
-  const [activeTab, setactiveTab] = useState("home");
+  const { setcurrentAccount } = useContext(CryptoContext);
+
+  const [activeTab, setactiveTab] = useState("auth");
+  const [government, setgovernment] = useState("");
+  const [isLoggedIn, setisLoggedIn] = useState(false);
 
   return (
     <div className="h-screen flex">
@@ -28,36 +32,43 @@ const UserDashBoard = () => {
         </div>
 
         <div className="pl-4">
-          <div
-            id="auth"
-            className={`${
-              activeTab === "auth" ? "bg-[#04004D] font-bold" : ""
-            } py-4 px-8 rounded-l-full cursor-pointer transition-all`}
-            onClick={() => setactiveTab("auth")}
-          >
-            <p
-              className={`text-white text-2xl ${
-                activeTab === "auth" ? "pl-4" : ""
-              }`}
+          {!isLoggedIn ? (
+            <div
+              id="auth"
+              className={`${
+                activeTab === "auth" ? "bg-[#04004D] font-bold" : ""
+              } py-4 px-8 rounded-l-full cursor-pointer transition-all`}
+              onClick={() => setactiveTab("auth")}
             >
-              Sign In
-            </p>
-          </div>
-          <div
-            id="home"
-            className={`${
-              activeTab === "home" ? "bg-[#04004D] font-bold" : ""
-            } py-4 px-8 rounded-l-full cursor-pointer transition-all`}
-            onClick={() => setactiveTab("home")}
-          >
-            <p
-              className={`text-white text-2xl ${
-                activeTab === "home" ? "pl-4" : ""
-              }`}
+              <p
+                className={`text-white text-2xl ${
+                  activeTab === "auth" ? "pl-4" : ""
+                }`}
+              >
+                Sign In
+              </p>
+            </div>
+          ) : (
+            <div
+              id="auth"
+              className={`${
+                activeTab === "auth" ? "bg-[#04004D] font-bold" : ""
+              } py-4 px-8 rounded-l-full cursor-pointer transition-all`}
+              onClick={() => {
+                setactiveTab("auth");
+                setcurrentAccount("");
+                setisLoggedIn(false);
+              }}
             >
-              Home
-            </p>
-          </div>
+              <p
+                className={`text-white text-2xl ${
+                  activeTab === "auth" ? "pl-4" : ""
+                }`}
+              >
+                Sign Out
+              </p>
+            </div>
+          )}
           <div
             id="crypto"
             className={`${
@@ -110,16 +121,43 @@ const UserDashBoard = () => {
       <div id="right" className="w-4/5 p-8 h-screen overflow-auto">
         {(() => {
           switch (activeTab) {
-            case "auth":
-              return <Auth />;
             case "crypto":
-              return <Crypto />;
+              return (
+                <Crypto
+                  setactiveTab={setactiveTab}
+                  government={government}
+                  setgovernment={setgovernment}
+                  isLoggedIn={isLoggedIn}
+                />
+              );
             case "land":
-              return <Land />;
+              return (
+                <Land
+                  setactiveTab={setactiveTab}
+                  government={government}
+                  setgovernment={setgovernment}
+                  isLoggedIn={isLoggedIn}
+                />
+              );
             case "support":
-              return <Support />;
-            case "home":
-              return <Home />;
+              return (
+                <Support
+                  setactiveTab={setactiveTab}
+                  government={government}
+                  setgovernment={setgovernment}
+                  isLoggedIn={isLoggedIn}
+                />
+              );
+            case "auth":
+              return (
+                <Auth
+                  setactiveTab={setactiveTab}
+                  government={government}
+                  setgovernment={setgovernment}
+                  isLoggedIn={isLoggedIn}
+                  setisLoggedIn={setisLoggedIn}
+                />
+              );
             default:
               return null;
           }

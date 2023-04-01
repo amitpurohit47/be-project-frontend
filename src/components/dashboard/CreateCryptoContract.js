@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { CryptoContext } from "../../context/CryptoContext";
 import { addWillWithDuration, showError } from "../../utils/contractMethods";
-import { storeFiles } from "../../utils/web3.storage";
+// import { storeFiles } from "../../utils/web3.storage";
 import { toast } from "react-toastify";
 import Loader from "../utils/Loader";
 
@@ -10,7 +10,7 @@ const CreateCryptoContract = () => {
   const [amount, setamount] = useState("");
   const [deadline, setdeadline] = useState(0);
   const [email, setemail] = useState("");
-  const [file, setfile] = useState(null);
+  // const [file, setfile] = useState(null);
   const [nominees, setnominees] = useState([""]);
   const [nomineesEmail, setnomineesEmail] = useState([
     {
@@ -26,9 +26,9 @@ const CreateCryptoContract = () => {
     e.preventDefault();
     setloading(true);
     try {
-      const cid = await storeFiles(file);
-      const ipfsLink = `https://${cid}.ipfs.w3s.link/${file[0].name}`;
-      // const ipfsLink = "";
+      // const cid = await storeFiles(file);
+      // const ipfsLink = `https://${cid}.ipfs.w3s.link/${file[0].name}`;
+      const ipfsLink = "";
       const duration = parseInt(deadline);
       const tx = await addWillWithDuration(
         willName,
@@ -49,7 +49,7 @@ const CreateCryptoContract = () => {
       },
     ]);
     setamount("");
-    setfile(null);
+    // setfile(null);
     setwillName("");
     setdeadline(0);
     setloading(false);
@@ -58,7 +58,7 @@ const CreateCryptoContract = () => {
   return (
     <div className="relative">
       {loading && (
-        <div className="w-full h-screen flex items-center justify-center absolote top-0 left-0 bg-slate-100 bg-opacity-20">
+        <div className="w-full h-screen flex items-center justify-center absolute top-0 left-0 bg-slate-100 bg-opacity-20">
           <Loader />
         </div>
       )}
@@ -81,6 +81,7 @@ const CreateCryptoContract = () => {
               name="willName"
               value={willName}
               onChange={(e) => setwillName(e.target.value)}
+              required
             />
           </div>
         </div>
@@ -105,7 +106,7 @@ const CreateCryptoContract = () => {
               className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
               placeholder="Enter Your Email"
               type="email"
-              name="willName"
+              name="email"
               value={email}
               onChange={(e) => setemail(e.target.value)}
             />
@@ -126,9 +127,10 @@ const CreateCryptoContract = () => {
               name="amount"
               value={amount}
               onChange={(e) => setamount(e.target.value)}
+              required
             />
           </div>
-          <div className="p-4">
+          {/* <div className="p-4">
             <p className="text-xl mb-2 font-bold">
               Upload Aadhar{" "}
               <span className="italic text-slate-500 text-xs">
@@ -145,8 +147,9 @@ const CreateCryptoContract = () => {
                         hover:file:bg-violet-100
                       "
               onChange={(e) => setfile(e.target.files)}
+              required
             />
-          </div>
+          </div> */}
         </div>
         <div className="bg-[#f4f4f4] rounded shadow-md pr-6 pb-6 h-[225px]">
           <div className="p-4">
@@ -158,13 +161,14 @@ const CreateCryptoContract = () => {
               value={deadline}
               onChange={(e) => setdeadline(e.target.value)}
             >
-              <option value={60 * 60 * 24 * 30 * 3}>3 Months</option>
-              <option value={60 * 60 * 24 * 30 * 6}>6 Months</option>
-              <option value={60 * 60 * 24 * 30 * 12}>1 Year</option>
-              <option value={60 * 60 * 24 * 30 * 60}>5 Years</option>
-              <option value={60 * 60 * 24 * 30 * 120}>10 Years</option>
-              <option value={60 * 60 * 24 * 30 * 180}>15 Years</option>
-              <option value={60 * 60 * 24 * 30 * 240}>20 Years</option>
+              <option value={60 * 5 * 1000} >5 minutes</option>
+              <option value={60 * 60 * 24 * 30 * 3 * 1000}>3 Months</option>
+              <option value={60 * 60 * 24 * 30 * 6 * 1000}>6 Months</option>
+              <option value={60 * 60 * 24 * 30 * 12 * 1000}>1 Year</option>
+              <option value={60 * 60 * 24 * 30 * 60 * 1000}>5 Years</option>
+              <option value={60 * 60 * 24 * 30 * 120 * 1000}>10 Years</option>
+              <option value={60 * 60 * 24 * 30 * 180 * 1000}>15 Years</option>
+              <option value={60 * 60 * 24 * 30 * 240 * 1000}>20 Years</option>
             </select>
             <ul className="list-disc text-slate-500 text-sm italic p-4">
               <li>
@@ -182,7 +186,10 @@ const CreateCryptoContract = () => {
           </div>
         </div>
         {nomineesEmail.map((nominee, i) => (
-          <div className="bg-[#f4f4f4] rounded shadow-md pr-6 pb-6 h-[225px]">
+          <div
+            className="bg-[#f4f4f4] rounded shadow-md pr-6 pb-6 h-[225px]"
+            key={`nominee${i}`}
+          >
             <div className="px-4 pt-4">
               <p className="text-xl mb-2 font-bold">
                 Enter Nominee {i + 1} Address
@@ -197,6 +204,7 @@ const CreateCryptoContract = () => {
                 type="text"
                 name="nominee address"
                 value={nominee.nominee}
+                required
                 onChange={(e) => {
                   const newNominees = [...nominees];
                   const newNomineesEmail = [...nomineesEmail];
@@ -259,7 +267,7 @@ const CreateCryptoContract = () => {
           onClick={() => {
             setamount("");
             setdeadline(0);
-            setfile(null);
+            // setfile(null);
             setemail("");
             setnominees([]);
             setnomineesEmail([

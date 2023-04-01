@@ -36,24 +36,55 @@ export const getCryptoContract = () => {
   return cryptoContract;
 };
 
-export const addWill = async (
-  willName,
-  aadharLink,
-  nominees,
-  amount
-) => {
+export const getContactOwner = async () => {
+  try {
+    const cryptoContract = getCryptoContract();
+    const government = await cryptoContract.contractOwner();
+    return government;
+  } catch (error) {
+    showError(error);
+  }
+};
+
+export const getClaimRequests = async () => {
+  try {
+    const cryptoContract = getCryptoContract();
+    const claimRequests = await cryptoContract.getClaimRepository();
+    return claimRequests;
+  } catch (error) {
+    showError(error);
+  }
+};
+
+export const getUserWill = async (userAddress) => {
+  try {
+    const cryptoContract = getCryptoContract();
+    const userWill = await cryptoContract.getWill(userAddress);
+    return userWill;
+  } catch (error) {
+    showError(error);
+  }
+};
+
+export const getOfficers = async () => {
+  try {
+    const cryptoContract = getCryptoContract();
+    const officers = await cryptoContract.getClaimOfficers();
+    return officers;
+  } catch (error) {
+    showError(error);
+  }
+};
+
+
+export const addWill = async (willName, aadharLink, nominees, amount) => {
   try {
     const cryptoContract = getCryptoContract();
     const value = ethers.utils.parseEther(amount)._hex;
-    const tx = await cryptoContract.addWill(
-      willName,
-      aadharLink,
-      nominees,
-      {
-        gasLimit: 2000000,
-        value
-      }
-    );
+    const tx = await cryptoContract.addWill(willName, aadharLink, nominees, {
+      gasLimit: 2000000,
+      value,
+    });
     await tx.wait();
     return tx.hash;
   } catch (error) {
@@ -78,7 +109,7 @@ export const addWillWithDuration = async (
       duration,
       {
         gasLimit: 2000000,
-        value
+        value,
       }
     );
     await tx.wait();
@@ -136,21 +167,14 @@ export const claimRequest = async (userAddress, claimDocument) => {
   }
 };
 
-export const getClaimRequests = async () => {
+export const addOfficer = async (officer) => {
   try {
     const cryptoContract = getCryptoContract();
-    const claimRequests = await cryptoContract.claimRepository();
-    return claimRequests;
-  } catch (error) {
-    showError(error);
-  }
-};
-
-export const getUserWill = async (userAddress) => {
-  try {
-    const cryptoContract = getCryptoContract();
-    const userWill = await cryptoContract.willRepository(userAddress);
-    return userWill;
+    const tx = await cryptoContract.addOfficer(officer, {
+      gasLimit: 2000000,
+    });
+    await tx.wait();
+    return tx.hash;
   } catch (error) {
     showError(error);
   }
