@@ -41,7 +41,7 @@ const CreateCryptoContract = () => {
       if (tx) {
         nomineesEmail.forEach((mail) =>
           sendEmail(
-            mail,
+            mail.nomineeEmail,
             `You have been added as a nominee by ${currentAccount} for Crypto Assets. You can claim the assets using valid proof or the assets will be transferred to you automatically`,
             "Nominee Addition"
           )

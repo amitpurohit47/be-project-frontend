@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { getClaimRequests } from "../../utils/contractMethods";
 import Loader from "../utils/Loader";
 import NomieeClaimRequestCard from "./NomieeClaimRequestCard";
+import { CryptoContext } from "../../context/CryptoContext";
 
 const NomineeClaimRequests = () => {
+
+  const { currentAccount } = useContext(CryptoContext);
+
   const [loading, setloading] = useState(true);
   const [requests, setrequests] = useState([]);
 
@@ -32,12 +36,14 @@ const NomineeClaimRequests = () => {
         </p>
       </div>
       <div className="grid grid-cols-2 gap-4 mb-4">
-        {requests.map((request, i) => (
-          <NomieeClaimRequestCard
-            request={request}
-            key={`nomineerequest${i}`}
-          />
-        ))}
+        {requests.map((request, i) =>
+          request.nomineeAddress === currentAccount ? (
+            <NomieeClaimRequestCard
+              request={request}
+              key={`nomineerequest${i}`}
+            />
+          ) : null
+        )}
       </div>
     </div>
   );
