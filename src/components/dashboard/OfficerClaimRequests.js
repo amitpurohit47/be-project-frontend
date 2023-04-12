@@ -15,7 +15,7 @@ const OfficerClaimRequests = () => {
     fetchRequests();
   }, []);
 
-  return (
+  return  (
     <div>
       <div className="bg-[#f4f4f4] pt-8 rounded shadow-md mb-4">
         <h1 className="text-2xl text-white bg-[#220F68] rounded-r-full py-3 pr-8 pl-4 w-fit">
