@@ -1,13 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import Lottie from "react-lottie-player";
 import main from "../../assets/lottie/main.json";
 import PrimaryButton from "../utils/PrimaryButton";
-import SecondaryButton from "../utils/SecondaryButton";
-import { CryptoContext } from "../../context/CryptoContext";
 import { Link } from "react-router-dom";
 
 const Landing = () => {
-  const { currentAccount } = useContext(CryptoContext);
 
   return (
     <div className="relative grid place-items-center h-screen w-screen mt-4">
