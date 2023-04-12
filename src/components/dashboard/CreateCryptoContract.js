@@ -1,16 +1,17 @@
 import React, { useContext, useState } from "react";
 import { CryptoContext } from "../../context/CryptoContext";
 import { addWillWithDuration, showError } from "../../utils/contractMethods";
-// import { storeFiles } from "../../utils/web3.storage";
+import { storeFiles } from "../../utils/web3.storage";
 import { toast } from "react-toastify";
 import Loader from "../utils/Loader";
+import { sendEmail } from "../../utils/Email";
 
 const CreateCryptoContract = () => {
   const [willName, setwillName] = useState("");
   const [amount, setamount] = useState("");
   const [deadline, setdeadline] = useState(0);
   const [email, setemail] = useState("");
-  // const [file, setfile] = useState(null);
+  const [file, setfile] = useState(null);
   const [nominees, setnominees] = useState([""]);
   const [nomineesEmail, setnomineesEmail] = useState([
     {
@@ -26,9 +27,9 @@ const CreateCryptoContract = () => {
     e.preventDefault();
     setloading(true);
     try {
-      // const cid = await storeFiles(file);
-      // const ipfsLink = `https://${cid}.ipfs.w3s.link/${file[0].name}`;
-      const ipfsLink = "";
+      const cid = await storeFiles(file);
+      const ipfsLink = `https://${cid}.ipfs.w3s.link/${file[0].name}`;
+      // const ipfsLink = "";
       const duration = parseInt(deadline);
       const tx = await addWillWithDuration(
         willName,
@@ -37,7 +38,16 @@ const CreateCryptoContract = () => {
         amount,
         duration
       );
-      if (tx) toast.success("Will Added Successfully");
+      if (tx) {
+        nomineesEmail.forEach((mail) =>
+          sendEmail(
+            mail,
+            `You have been added as a nominee by ${currentAccount} for Crypto Assets. You can claim the assets using valid proof or the assets will be transferred to you automatically`,
+            "Nominee Addition"
+          )
+        );
+        toast.success("Will Added Successfully");
+      }
     } catch (error) {
       showError(error);
     }
@@ -49,7 +59,7 @@ const CreateCryptoContract = () => {
       },
     ]);
     setamount("");
-    // setfile(null);
+    setfile(null);
     setwillName("");
     setdeadline(0);
     setloading(false);
@@ -130,7 +140,7 @@ const CreateCryptoContract = () => {
               required
             />
           </div>
-          {/* <div className="p-4">
+          <div className="p-4">
             <p className="text-xl mb-2 font-bold">
               Upload Aadhar{" "}
               <span className="italic text-slate-500 text-xs">
@@ -149,7 +159,7 @@ const CreateCryptoContract = () => {
               onChange={(e) => setfile(e.target.files)}
               required
             />
-          </div> */}
+          </div>
         </div>
         <div className="bg-[#f4f4f4] rounded shadow-md pr-6 pb-6 h-[225px]">
           <div className="p-4">
@@ -161,7 +171,7 @@ const CreateCryptoContract = () => {
               value={deadline}
               onChange={(e) => setdeadline(e.target.value)}
             >
-              <option value={60 * 5 * 1000} >5 minutes</option>
+              <option value={60 * 5 * 1000}>5 minutes</option>
               <option value={60 * 60 * 24 * 30 * 3 * 1000}>3 Months</option>
               <option value={60 * 60 * 24 * 30 * 6 * 1000}>6 Months</option>
               <option value={60 * 60 * 24 * 30 * 12 * 1000}>1 Year</option>

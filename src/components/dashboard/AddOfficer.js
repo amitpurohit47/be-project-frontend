@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { addOfficer } from "../../utils/contractMethods";
 import Loader from "../utils/Loader";
+import { sendEmail } from "../../utils/Email";
 
-const AddOfficer = ({ officers, setofficers }) => {
+const AddOfficer = ({ officers, setofficers, government }) => {
   const [officer, setofficer] = useState("");
   const [officerEmail, setofficerEmail] = useState("");
   const [loading, setloading] = useState(false);
@@ -11,11 +12,18 @@ const AddOfficer = ({ officers, setofficers }) => {
   const handleAdd = async () => {
     setloading(true);
     try {
-      await addOfficer(officer);
+      const tx = await addOfficer(officer);
       const offs = officers;
       offs.push(officer);
-      setofficers(offs);
-      toast.success("Officer added successfully");
+      if (tx) {
+        sendEmail(
+          officerEmail,
+          `CryptoBridge Team wants to inform you that Crypto Contract Owner ${government} has added you as the officer for Crypto Contract Claim Settlement. Your duties are to handle the claims by users for crypto contracts.`,
+          "Addition of Officer"
+        );
+        setofficers(offs);
+        toast.success("Officer added successfully");
+      }
     } catch (error) {
       console.log(error);
     }

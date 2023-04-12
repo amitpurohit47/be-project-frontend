@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { getClaimRequests } from "../../utils/contractMethods";
+import Loader from "../utils/Loader";
+import NomieeClaimRequestCard from "./NomieeClaimRequestCard";
 
 const NomineeClaimRequests = () => {
-  return (
+  const [loading, setloading] = useState(true);
+  const [requests, setrequests] = useState([]);
+
+  useEffect(() => {
+    const fetchRequests = async () => {
+      const reqs = await getClaimRequests();
+      setrequests(reqs);
+    };
+    fetchRequests();
+    setloading(false);
+  }, []);
+
+  return loading ? (
+    <div className="w-full h-screen flex items-center justify-center bg-slate-100 bg-opacity-20">
+      <Loader />
+    </div>
+  ) : (
     <div>
       <div className="bg-[#f4f4f4] pt-8 rounded shadow-md mb-4">
         <h1 className="text-2xl text-white bg-[#220F68] rounded-r-full py-3 pr-8 pl-4 w-fit">
@@ -13,64 +32,12 @@ const NomineeClaimRequests = () => {
         </p>
       </div>
       <div className="grid grid-cols-2 gap-4 mb-4">
-        <div className="bg-[#f4f4f4] p-4 rounded shadow-md">
-          <p className="text-xl font-bold">Nominee Address</p>
-          <p className="text-slate-500 text-sm italic p-4">
-            0x7859324569743206548325043254
-          </p>
-          <p className="text-xl font-bold">Will Owner Address</p>
-          <p className="text-slate-500 text-sm italic p-4">
-            0x7859324569743206548325043254
-          </p>
-          <p className="text-xl font-bold">Request Status</p>
-          <p className="text-red-500 text-sm italic p-4">
-            Rejected
-          </p>
-          <p className="text-xl font-bold">
-            Reason for Rejection/Acceptance Note
-          </p>
-          <p className="text-slate-500 text-sm italic p-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut unde
-            ratione dolore quas laborum repellat cupiditate rem quibusdam
-            voluptas fugit, culpa nesciunt, reprehenderit, error iusto. Modi
-            animi expedita maiores molestiae.
-          </p>
-          <p className="text-xl font-bold">Document for Proof of Claim</p>
-          <a href="/">
-            <p className="text-blue-500 text-sm italic p-4 underline">
-              View Aadhar
-            </p>
-          </a>
-        </div>
-        <div className="bg-[#f4f4f4] p-4 rounded shadow-md">
-          <p className="text-xl font-bold">Nominee Address</p>
-          <p className="text-slate-500 text-sm italic p-4">
-            0x7859324569743206548325043254
-          </p>
-          <p className="text-xl font-bold">Will Owner Address</p>
-          <p className="text-slate-500 text-sm italic p-4">
-            0x7859324569743206548325043254
-          </p>
-          <p className="text-xl font-bold">Request Status</p>
-          <p className="text-red-500 text-sm italic p-4">
-            Rejected
-          </p>
-          <p className="text-xl font-bold">
-            Reason for Rejection/Acceptance Note
-          </p>
-          <p className="text-slate-500 text-sm italic p-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut unde
-            ratione dolore quas laborum repellat cupiditate rem quibusdam
-            voluptas fugit, culpa nesciunt, reprehenderit, error iusto. Modi
-            animi expedita maiores molestiae.
-          </p>
-          <p className="text-xl font-bold">Document for Proof of Claim</p>
-          <a href="/">
-            <p className="text-blue-500 text-sm italic p-4 underline">
-              View Aadhar
-            </p>
-          </a>
-        </div>
+        {requests.map((request, i) => (
+          <NomieeClaimRequestCard
+            request={request}
+            key={`nomineerequest${i}`}
+          />
+        ))}
       </div>
     </div>
   );

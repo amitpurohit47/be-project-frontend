@@ -4,7 +4,7 @@ import { getUserWill } from "../../utils/contractMethods";
 import { CryptoContext } from "../../context/CryptoContext";
 import { ethers } from "ethers";
 
-const ViewCryptoContract = () => {
+const ViewCryptoContract = ({ setisWillCreated }) => {
   const { currentAccount } = useContext(CryptoContext);
 
   const [loading, setloading] = useState(false);
@@ -16,6 +16,8 @@ const ViewCryptoContract = () => {
     const fetchWill = async () => {
       const will = await getUserWill(currentAccount);
       setuserWill(will);
+      console.log(will.amount);
+      if (will.amount && parseInt(will.amount) === 0) setisWillCreated(false);
       if (will.deadLine)
         setremainingSeconds(will.deadLine - Math.floor(Date.now() / 1000));
     };
@@ -28,7 +30,7 @@ const ViewCryptoContract = () => {
     setloading(false);
 
     return () => clearInterval(interval);
-  }, [currentAccount]);
+  }, [currentAccount, setisWillCreated]);
 
   const calculateTimeRemaining = () => {
     const yearInSeconds = 31536000;
@@ -62,13 +64,12 @@ const ViewCryptoContract = () => {
     return `${years} years, ${months} months, ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds`;
   };
 
-  return (
+  return loading ? (
+    <div className="w-full h-screen flex items-center justify-center bg-slate-100 bg-opacity-20">
+      <Loader />
+    </div>
+  ) : (
     <div className="relative w-full my-4">
-      {loading && (
-        <div className="w-full h-screen flex items-center justify-center absolote top-0 left-0 bg-slate-100 bg-opacity-20">
-          <Loader />
-        </div>
-      )}
       <div className="rounded shadow-md p-8 bg-[#f4f4f4] w-full">
         <h1 className="text-5xl font-bold text-violet-900 mb-12">
           {userWill.willName}

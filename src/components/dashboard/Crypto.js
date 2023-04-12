@@ -12,6 +12,8 @@ const Crypto = ({ setactiveTab, government, isLoggedIn }) => {
   const { currentAccount } = useContext(CryptoContext);
   const [isOfficer, setisOfficer] = useState(false);
   const [officers, setofficers] = useState([]);
+  const [isWillCreated, setisWillCreated] = useState(true);
+  const [viewWill, setviewWill] = useState("will");
 
   useEffect(() => {
     const fetchOfficers = async () => {
@@ -49,15 +51,49 @@ const Crypto = ({ setactiveTab, government, isLoggedIn }) => {
   ) : (
     <div>
       {currentAccount === government && (
-        <AddOfficer setofficers={setofficers} officers={officers} />
+        <AddOfficer
+          setofficers={setofficers}
+          officers={officers}
+          government={government}
+        />
       )}
       {isOfficer && <OfficerClaimRequests />}
       {currentAccount !== government && !isOfficer && (
         <div>
-          <ViewCryptoContract />
-          <CreateCryptoContract />
-          <ClaimCrypto />
-          <NomineeClaimRequests />
+          <div className="flex w-full justify-around">
+            <button
+              className={`cursor-pointer px-6 py-2 ${
+                viewWill === "will"
+                  ? "bg-[#220F68] text-white"
+                  : "bg-white text-[#220F68]"
+              } rounded-full font-bold mr-4 text-xl shadow-md`}
+              onClick={() => setviewWill("will")}
+            >
+              View/Create Will
+            </button>
+            <button
+              className={`cursor-pointer px-6 py-2 ${
+                viewWill === "claim"
+                  ? "bg-[#220F68] text-white"
+                  : "bg-white text-[#220F68]"
+              } rounded-full font-bold mr-4 text-xl shadow-md`}
+              onClick={() => setviewWill("claim")}
+            >
+              Claim Will
+            </button>
+          </div>
+          {viewWill === "will" &&
+            (isWillCreated ? (
+              <ViewCryptoContract setisWillCreated={setisWillCreated} />
+            ) : (
+              <CreateCryptoContract />
+            ))}
+          {viewWill === "claim" && (
+            <div className="my-4">
+              <ClaimCrypto />
+              <NomineeClaimRequests />
+            </div>
+          )}
         </div>
       )}
     </div>
