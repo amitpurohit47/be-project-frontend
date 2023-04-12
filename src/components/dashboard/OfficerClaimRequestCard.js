@@ -10,7 +10,7 @@ const OfficerClaimRequestCard = ({ request, setloading }) => {
   const handleRequest = async (approved) => {
     setloading(true);
     try {
-      await executeWillThroughOfficer(request.useraddress, note, approved);
+      await executeWillThroughOfficer(request.userAddress, note, approved);
     } catch (error) {
       showError(error);
       setloading(false);
