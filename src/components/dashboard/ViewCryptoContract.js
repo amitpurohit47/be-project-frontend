@@ -16,7 +16,7 @@ const ViewCryptoContract = ({ setisWillCreated }) => {
     const fetchWill = async () => {
       const will = await getUserWill(currentAccount);
       setuserWill(will);
-      console.log(will.amount);
+      console.log(will);
       if (will.amount && parseInt(will.amount) === 0) setisWillCreated(false);
       if (will.deadLine)
         setremainingSeconds(will.deadLine - Math.floor(Date.now() / 1000));
@@ -87,7 +87,7 @@ const ViewCryptoContract = ({ setisWillCreated }) => {
           </div>
           <div className="mb-4">
             <h1 className="text-2xl mb-2 font-semibold">Aadhar Link</h1>
-            <a href="/" target={"_blank"} rel="noreferrer">
+            <a href={userWill.IpfsAdharLink} target={"_blank"} rel="noreferrer">
               <p className="text-blue-500 italic underline">View Aadhar</p>
             </a>
           </div>
