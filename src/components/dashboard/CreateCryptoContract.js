@@ -48,6 +48,7 @@ const CreateCryptoContract = () => {
         );
         toast.success("Will Added Successfully");
       }
+      
     } catch (error) {
       showError(error);
     }
