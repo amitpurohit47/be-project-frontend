@@ -18,8 +18,9 @@ const ViewCryptoContract = ({ setisWillCreated }) => {
       setuserWill(will);
       console.log(will);
       if (will.amount && parseInt(will.amount) === 0) setisWillCreated(false);
-      if (will.deadLine)
-        setremainingSeconds(will.deadLine - Math.floor(Date.now() / 1000));
+      if (will.deadLine){
+        setremainingSeconds((will.deadLine - (Math.floor(Date.now()))/1000));
+        }
     };
 
     const interval = setInterval(() => {
@@ -96,7 +97,7 @@ const ViewCryptoContract = ({ setisWillCreated }) => {
               Will Executing After
             </h1>
             <p className="text-slate-500 italic">
-              {userWill.deadLine && calculateTimeRemaining(userWill.deadLine)}
+              {remainingSeconds <= 0 ? "Deadline Ended, Will Execution Completed" : userWill.deadLine && calculateTimeRemaining(userWill.deadLine)}
             </p>
           </div>
           <div className="mb-4">
