@@ -171,14 +171,14 @@ const CreateCryptoContract = () => {
               value={deadline}
               onChange={(e) => setdeadline(e.target.value)}
             >
-              <option value={60 * 5 * 1000}>5 minutes</option>
-              <option value={60 * 60 * 24 * 30 * 3 * 1000}>3 Months</option>
-              <option value={60 * 60 * 24 * 30 * 6 * 1000}>6 Months</option>
-              <option value={60 * 60 * 24 * 30 * 12 * 1000}>1 Year</option>
-              <option value={60 * 60 * 24 * 30 * 60 * 1000}>5 Years</option>
-              <option value={60 * 60 * 24 * 30 * 120 * 1000}>10 Years</option>
-              <option value={60 * 60 * 24 * 30 * 180 * 1000}>15 Years</option>
-              <option value={60 * 60 * 24 * 30 * 240 * 1000}>20 Years</option>
+              <option value={60 * 5}>5 minutes</option>
+              <option value={60 * 60 * 24 * 30 * 3}>3 Months</option>
+              <option value={60 * 60 * 24 * 30 * 6}>6 Months</option>
+              <option value={60 * 60 * 24 * 30 * 12}>1 Year</option>
+              <option value={60 * 60 * 24 * 30 * 60}>5 Years</option>
+              <option value={60 * 60 * 24 * 30 * 120}>10 Years</option>
+              <option value={60 * 60 * 24 * 30 * 180}>15 Years</option>
+              <option value={60 * 60 * 24 * 30 * 240}>20 Years</option>
             </select>
             <ul className="list-disc text-slate-500 text-sm italic p-4">
               <li>
