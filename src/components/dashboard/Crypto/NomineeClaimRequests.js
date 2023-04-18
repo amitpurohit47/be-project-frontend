@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import { getClaimRequests } from "../../utils/contractMethods";
-import Loader from "../utils/Loader";
+import { getClaimRequests } from "../../../utils/contractMethods";
+import Loader from "../../utils/Loader";
 import NomieeClaimRequestCard from "./NomieeClaimRequestCard";
-import { CryptoContext } from "../../context/CryptoContext";
+import { CryptoContext } from "../../../context/CryptoContext";
 
 const NomineeClaimRequests = () => {
 

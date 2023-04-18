@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { claimRequest } from "../../utils/contractMethods";
-import { storeFiles } from "../../utils/web3.storage";
-import Loader from "../utils/Loader";
+import { claimRequest } from "../../../utils/contractMethods";
+import { storeFiles } from "../../../utils/web3.storage";
+import Loader from "../../utils/Loader";
 
 const ClaimCrypto = () => {
   const [address, setaddress] = useState("");

@@ -7,7 +7,6 @@ const { ethereum } = window;
 
 export const CryptoProvider = ({ children }) => {
   const [currentAccount, setcurrentAccount] = useState("");
-  const [isLoggedIn, setisLoggedIn] = useState(false);
 
   const checkIfWalletIsConnect = async () => {
     try {
@@ -33,9 +32,7 @@ export const CryptoProvider = ({ children }) => {
     <CryptoContext.Provider
       value={{
         currentAccount,
-        setcurrentAccount,
-        isLoggedIn,
-        setisLoggedIn
+        setcurrentAccount
       }}
     >
       <ToastContainer />

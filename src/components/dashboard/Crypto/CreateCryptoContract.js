@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import { CryptoContext } from "../../context/CryptoContext";
-import { addWillWithDuration, showError } from "../../utils/contractMethods";
-import { storeFiles } from "../../utils/web3.storage";
+import { CryptoContext } from "../../../context/CryptoContext";
+import { addWillWithDuration, showError } from "../../../utils/contractMethods";
+import { storeFiles } from "../../../utils/web3.storage";
 import { toast } from "react-toastify";
-import Loader from "../utils/Loader";
-import { sendEmail } from "../../utils/Email";
+import Loader from "../../utils/Loader";
+import { sendEmail } from "../../../utils/Email";
 
 const CreateCryptoContract = () => {
   const [willName, setwillName] = useState("");
@@ -67,7 +67,7 @@ const CreateCryptoContract = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative mt-4">
       {loading && (
         <div className="w-full h-screen flex items-center justify-center absolute top-0 left-0 bg-slate-100 bg-opacity-20">
           <Loader />

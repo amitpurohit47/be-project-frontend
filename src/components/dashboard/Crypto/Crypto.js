@@ -1,61 +1,52 @@
 import React, { useContext, useEffect, useState } from "react";
-import { CryptoContext } from "../../context/CryptoContext";
-import { getOfficers } from "../../utils/contractMethods";
+import { CryptoContext } from "../../../context/CryptoContext";
 import AddOfficer from "./AddOfficer";
 import ClaimCrypto from "./ClaimCrypto";
 import CreateCryptoContract from "./CreateCryptoContract";
 import NomineeClaimRequests from "./NomineeClaimRequests";
 import OfficerClaimRequests from "./OfficerClaimRequests";
 import ViewCryptoContract from "./ViewCryptoContract";
+import Auth from "./Auth";
 
-const Crypto = ({ setactiveTab, government, isLoggedIn }) => {
+const Crypto = () => {
   const { currentAccount } = useContext(CryptoContext);
+  const [government, setgovernment] = useState("");
   const [isOfficer, setisOfficer] = useState(false);
   const [officers, setofficers] = useState([]);
+  const [isLoggedIn, setisLoggedIn] = useState(false);
   const [isWillCreated, setisWillCreated] = useState(true);
   const [viewWill, setviewWill] = useState("will");
 
   useEffect(() => {
-    const fetchOfficers = async () => {
-      const offs = await getOfficers();
-      const newOffs = offs.map((off) => off.toLowerCase());
-      setofficers(newOffs);
-    };
 
-    const checkOfficer = () => {
-      if (
-        currentAccount &&
-        officers.length > 0 &&
-        officers.includes(currentAccount)
-      )
-        setisOfficer(true);
-    };
-
-    if (officers.length === 0) fetchOfficers();
-    checkOfficer();
-  }, [officers, currentAccount]);
+  },[officers])
 
   return !isLoggedIn ? (
-    <div className="bg-[#f4f4f4] p-8 rounded flex flex-col items-center justify-center">
-      <h1 className="text-2xl font-bold mb-8">
-        You Need to Sign In to access the App
-      </h1>
-      <button
-        className="border-none outline-none px-6 py-2 text-white text-xl rounded cursor-pointer flex items-center justify-center"
-        style={{ background: "rgb(34, 15, 104)" }}
-        onClick={() => setactiveTab("auth")}
-      >
-        Sign In
-      </button>
-    </div>
+    <Auth
+      setisLoggedIn={setisLoggedIn}
+      setgovernment={setgovernment}
+      setofficers={setofficers}
+      setisOfficer={setisOfficer}
+    />
   ) : (
     <div>
+      <div className="text-right">
+        <button
+          type="button"
+          className="cursor-pointer mx-auto focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+          onClick={() => setisLoggedIn(false)}
+        >
+          Sign Out
+        </button>
+      </div>
       {currentAccount === government && (
-        <AddOfficer
-          setofficers={setofficers}
-          officers={officers}
-          government={government}
-        />
+        <div>
+          <AddOfficer
+            setofficers={setofficers}
+            officers={officers}
+            government={government}
+          />
+        </div>
       )}
       {isOfficer && <OfficerClaimRequests />}
       {currentAccount !== government && !isOfficer && (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { getClaimRequests } from "../../utils/contractMethods";
+import { getClaimRequests } from "../../../utils/contractMethods";
 import OfficerClaimRequestCard from "./OfficerClaimRequestCard";
-import Loader from "../utils/Loader";
+import Loader from "../../utils/Loader";
 
 const OfficerClaimRequests = () => {
   const [loading, setloading] = useState(false);

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import Loader from "../utils/Loader";
-import { getUserWill } from "../../utils/contractMethods";
-import { CryptoContext } from "../../context/CryptoContext";
+import Loader from "../../utils/Loader";
+import { getUserWill } from "../../../utils/contractMethods";
+import { CryptoContext } from "../../../context/CryptoContext";
 import { ethers } from "ethers";
 
 const ViewCryptoContract = ({ setisWillCreated }) => {

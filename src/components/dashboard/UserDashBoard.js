@@ -1,18 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import logo from "../../assets/images/logo.png";
-import Land from "./Land";
+import Land from "./Land/Land";
 import Support from "./Support";
-import Auth from "./Auth";
-import Crypto from "./Crypto";
+import Crypto from "./Crypto/Crypto";
+import Industrial from "./Industrial/Industrial";
+import Car from "./Car/Car";
+import Flats from "./Flats/Flats";
+import Commercial from "./Commercial/Commercial";
 import { Link } from "react-router-dom";
-import { CryptoContext } from "../../context/CryptoContext";
 
 const UserDashBoard = () => {
-  const { setcurrentAccount } = useContext(CryptoContext);
-
-  const [activeTab, setactiveTab] = useState("auth");
-  const [government, setgovernment] = useState("");
-  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [activeTab, setactiveTab] = useState("crypto");
 
   return (
     <div className="h-screen flex">
@@ -32,43 +30,6 @@ const UserDashBoard = () => {
         </div>
 
         <div className="pl-4">
-          {!isLoggedIn ? (
-            <div
-              id="auth"
-              className={`${
-                activeTab === "auth" ? "bg-[#04004D] font-bold" : ""
-              } py-4 px-8 rounded-l-full cursor-pointer transition-all`}
-              onClick={() => setactiveTab("auth")}
-            >
-              <p
-                className={`text-white text-2xl ${
-                  activeTab === "auth" ? "pl-4" : ""
-                }`}
-              >
-                Sign In
-              </p>
-            </div>
-          ) : (
-            <div
-              id="auth"
-              className={`${
-                activeTab === "auth" ? "bg-[#04004D] font-bold" : ""
-              } py-4 px-8 rounded-l-full cursor-pointer transition-all`}
-              onClick={() => {
-                setactiveTab("auth");
-                setcurrentAccount("");
-                setisLoggedIn(false);
-              }}
-            >
-              <p
-                className={`text-white text-2xl ${
-                  activeTab === "auth" ? "pl-4" : ""
-                }`}
-              >
-                Sign Out
-              </p>
-            </div>
-          )}
           <div
             id="crypto"
             className={`${
@@ -100,6 +61,67 @@ const UserDashBoard = () => {
             </p>
           </div>
           <div
+            id="flats"
+            className={`${
+              activeTab === "flats" ? "bg-[#04004D] font-bold" : ""
+            } py-4 px-8 rounded-l-full cursor-pointer transition-all`}
+            onClick={() => setactiveTab("flats")}
+          >
+            <p
+              className={`text-white text-2xl ${
+                activeTab === "flats" ? "pl-4" : ""
+              }`}
+            >
+              Residential Flats
+            </p>
+          </div>
+          <div
+            id="commercial"
+            className={`${
+              activeTab === "commercial" ? "bg-[#04004D] font-bold" : ""
+            } py-4 px-8 rounded-l-full cursor-pointer transition-all`}
+            onClick={() => setactiveTab("commercial")}
+          >
+            <p
+              className={`text-white text-2xl ${
+                activeTab === "commercial" ? "pl-4" : ""
+              }`}
+            >
+              Commercial Estate
+            </p>
+          </div>
+          <div
+            id="industrial"
+            className={`${
+              activeTab === "industrial" ? "bg-[#04004D] font-bold" : ""
+            } py-4 px-8 rounded-l-full cursor-pointer transition-all`}
+            onClick={() => setactiveTab("industrial")}
+          >
+            <p
+              className={`text-white text-2xl ${
+                activeTab === "industrial" ? "pl-4" : ""
+              }`}
+            >
+              Industrial Estate
+            </p>
+          </div>
+          <div
+            id="car"
+            className={`${
+              activeTab === "car" ? "bg-[#04004D] font-bold" : ""
+            } py-4 px-8 rounded-l-full cursor-pointer transition-all`}
+            onClick={() => setactiveTab("car")}
+          >
+            <p
+              className={`text-white text-2xl ${
+                activeTab === "car" ? "pl-4" : ""
+              }`}
+            >
+              Vehicle
+            </p>
+          </div>
+
+          <div
             id="support"
             className={`${
               activeTab === "support" ? "bg-[#04004D] font-bold" : ""
@@ -122,42 +144,19 @@ const UserDashBoard = () => {
         {(() => {
           switch (activeTab) {
             case "crypto":
-              return (
-                <Crypto
-                  setactiveTab={setactiveTab}
-                  government={government}
-                  setgovernment={setgovernment}
-                  isLoggedIn={isLoggedIn}
-                />
-              );
+              return <Crypto />;
             case "land":
-              return (
-                <Land
-                  setactiveTab={setactiveTab}
-                  government={government}
-                  setgovernment={setgovernment}
-                  isLoggedIn={isLoggedIn}
-                />
-              );
+              return <Land />;
             case "support":
-              return (
-                <Support
-                  setactiveTab={setactiveTab}
-                  government={government}
-                  setgovernment={setgovernment}
-                  isLoggedIn={isLoggedIn}
-                />
-              );
-            case "auth":
-              return (
-                <Auth
-                  setactiveTab={setactiveTab}
-                  government={government}
-                  setgovernment={setgovernment}
-                  isLoggedIn={isLoggedIn}
-                  setisLoggedIn={setisLoggedIn}
-                />
-              );
+              return <Support />;
+            case "flats":
+              return <Flats />;
+            case "industrial":
+              return <Industrial />;
+            case "commercial":
+              return <Commercial />;
+            case "car":
+              return <Car />
             default:
               return null;
           }

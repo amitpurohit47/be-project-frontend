@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { CryptoContext } from "../../context/CryptoContext";
+import { CryptoContext } from "../../../context/CryptoContext";
 
 const Land = ({ setactiveTab }) => {
   const { currentAccount } = useContext(CryptoContext);

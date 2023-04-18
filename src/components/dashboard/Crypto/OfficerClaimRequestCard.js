@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   showError,
   executeWillThroughOfficer,
-} from "../../utils/contractMethods";
+} from "../../../utils/contractMethods";
 
 const OfficerClaimRequestCard = ({ request, setloading }) => {
   const [note, setnote] = useState("");
