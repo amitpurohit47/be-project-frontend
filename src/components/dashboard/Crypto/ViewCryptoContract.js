@@ -118,9 +118,10 @@ const ViewCryptoContract = ({ setisWillCreated }) => {
                   calculateTimeRemaining(userWill.deadLine)}
             </p>
           </div>
-          <div className="mb-4">
-            <h1 className="text-2xl mb-2 font-semibold">Nominee Details</h1>
-            <ul className="list-disc text-slate-500 italic p-4">
+        </div>
+          <div className="mb-4 mt-2">
+            <h1 className="text-2xl font-semibold">Nominee Details</h1>
+            <ul className="list-disc text-slate-500 italic p-4 grid grid-cols-2 gap-4">
               {userWill.nomineeAddress?.map((nominee, i) => (
                 <li key={`nomineeAddress${i}`}>
                   {nominee}
@@ -137,7 +138,6 @@ const ViewCryptoContract = ({ setisWillCreated }) => {
               ))}
             </ul>
           </div>
-        </div>
       </div>
     </div>
   );

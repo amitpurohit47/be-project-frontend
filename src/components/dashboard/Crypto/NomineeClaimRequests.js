@@ -14,6 +14,7 @@ const NomineeClaimRequests = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       const reqs = await getClaimRequests();
+      console.log(reqs);
       setrequests(reqs);
     };
     fetchRequests();
@@ -37,7 +38,7 @@ const NomineeClaimRequests = () => {
       </div>
       <div className="grid grid-cols-2 gap-4 mb-4">
         {requests.map((request, i) =>
-          request.nomineeAddress === currentAccount ? (
+          request.nomineeAddress.toLowerCase() === currentAccount ? (
             <NomieeClaimRequestCard
               request={request}
               key={`nomineerequest${i}`}

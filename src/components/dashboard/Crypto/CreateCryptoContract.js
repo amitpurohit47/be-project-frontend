@@ -76,6 +76,7 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
       {
         nominee: "",
         nomineeEmail: "",
+        file: null
       },
     ]);
     setamount("");
