@@ -1,4 +1,4 @@
 import abi from "./CryptoWill.json";
 
 export const contractABI = abi;
-export const contractAddress = "0x84e490Ba5A94c64cA1A9E60252D7E367C1298c56";
+export const contractAddress = "0xf560AF0690703627456e3Fe4324F3D81ce44F273";

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { CryptoContext } from "../../../context/CryptoContext";
 import AddOfficer from "./AddOfficer";
 import ClaimCrypto from "./ClaimCrypto";
@@ -17,9 +17,6 @@ const Crypto = () => {
   const [isWillCreated, setisWillCreated] = useState(true);
   const [viewWill, setviewWill] = useState("will");
 
-  useEffect(() => {
-
-  },[officers])
 
   return !isLoggedIn ? (
     <Auth
@@ -77,7 +74,7 @@ const Crypto = () => {
             (isWillCreated ? (
               <ViewCryptoContract setisWillCreated={setisWillCreated} />
             ) : (
-              <CreateCryptoContract />
+              <CreateCryptoContract setisWillCreated={setisWillCreated} />
             ))}
           {viewWill === "claim" && (
             <div className="my-4">

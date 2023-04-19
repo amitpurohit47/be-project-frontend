@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { addOfficer } from "../../../utils/contractMethods";
 import Loader from "../../utils/Loader";
@@ -9,6 +9,10 @@ const AddOfficer = ({ officers, setofficers, government }) => {
   const [officer, setofficer] = useState("");
   const [officerEmail, setofficerEmail] = useState("");
   const [loading, setloading] = useState(false);
+
+  useEffect(() => {
+
+  },[officers]);
 
   const handleAdd = async () => {
     setloading(true);

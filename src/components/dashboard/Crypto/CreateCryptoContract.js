@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import Loader from "../../utils/Loader";
 import { sendEmail } from "../../../utils/Email";
 
-const CreateCryptoContract = () => {
+const CreateCryptoContract = ({ setisWillCreated }) => {
   const [willName, setwillName] = useState("");
   const [amount, setamount] = useState("");
   const [deadline, setdeadline] = useState(0);
@@ -17,6 +17,7 @@ const CreateCryptoContract = () => {
     {
       nominee: "",
       nomineeEmail: "",
+      file: null,
     },
   ]);
   const [loading, setloading] = useState(false);
@@ -31,10 +32,23 @@ const CreateCryptoContract = () => {
       const ipfsLink = `https://${cid}.ipfs.w3s.link/${file[0].name}`;
       // const ipfsLink = "";
       const duration = parseInt(deadline);
+      const nomineesPromise = Promise.allSettled(
+        nomineesEmail.map(async (nominee) => {
+          const id = await storeFiles(nominee.file);
+          const link = `https://${id}.ipfs.w3s.link/${nominee.file[0].name}`;
+          return link;
+        })
+      );
+      const nomineesResults = await nomineesPromise;
+      const nomineeAadhar = nomineesResults
+        .filter((result) => result.status === "fulfilled")
+        .map((result) => result.value);
+      // console.log(nomineeAadhar);
       const tx = await addWillWithDuration(
         willName,
         ipfsLink,
         nominees,
+        nomineeAadhar,
         amount,
         duration
       );
@@ -46,9 +60,14 @@ const CreateCryptoContract = () => {
             "Nominee Addition"
           )
         );
+        sendEmail(
+          email,
+          `Your Will of ${amount} Eth is created successfully`,
+          "Will Creation"
+        );
         toast.success("Will Added Successfully");
+        setisWillCreated(true);
       }
-      
     } catch (error) {
       showError(error);
     }
@@ -173,6 +192,7 @@ const CreateCryptoContract = () => {
               onChange={(e) => setdeadline(e.target.value)}
             >
               <option value={60 * 5}>5 minutes</option>
+              <option value={60 * 15}>15 minutes</option>
               <option value={60 * 60 * 24 * 30 * 3}>3 Months</option>
               <option value={60 * 60 * 24 * 30 * 6}>6 Months</option>
               <option value={60 * 60 * 24 * 30 * 12}>1 Year</option>
@@ -198,7 +218,7 @@ const CreateCryptoContract = () => {
         </div>
         {nomineesEmail.map((nominee, i) => (
           <div
-            className="bg-[#f4f4f4] rounded shadow-md pr-6 pb-6 h-[225px]"
+            className="bg-[#f4f4f4] rounded shadow-md pr-6 pb-6 h-[340px]"
             key={`nominee${i}`}
           >
             <div className="px-4 pt-4">
@@ -247,6 +267,30 @@ const CreateCryptoContract = () => {
                 }}
               />
             </div>
+            <div className="p-4">
+              <p className="text-xl mb-2 font-bold">
+                Upload Aadhar{" "}
+                <span className="italic text-slate-500 text-xs">
+                  Used to verify your identity for will creation
+                </span>
+              </p>
+              <input
+                type="file"
+                className="block w-full text-sm text-slate-500
+                        file:mr-4 file:py-2 file:px-4
+                        file:rounded-full file:border-0
+                        file:text-sm file:font-semibold
+                        file:bg-violet-50 file:text-violet-700
+                        hover:file:bg-violet-100
+                      "
+                onChange={(e) => {
+                  const noms = [...nomineesEmail];
+                  noms[i].file = e.target.files;
+                  setnomineesEmail(noms);
+                }}
+                required
+              />
+            </div>
             <p
               className="px-4 py-1 border-2 border-violet-700 rounded-full ml-4 mt-2 w-fit cursor-pointer text-violet-700 font-bold"
               onClick={() => {
@@ -256,6 +300,7 @@ const CreateCryptoContract = () => {
                 newNomineesEmail.push({
                   nominee: "",
                   nomineeEmail: "",
+                  file: null,
                 });
                 setnominees(newNominees);
                 setnomineesEmail(newNomineesEmail);

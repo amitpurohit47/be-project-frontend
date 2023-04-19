@@ -16,11 +16,11 @@ const ViewCryptoContract = ({ setisWillCreated }) => {
     const fetchWill = async () => {
       const will = await getUserWill(currentAccount);
       setuserWill(will);
-      console.log(will);
+      // console.log(will);
       if (will.amount && parseInt(will.amount) === 0) setisWillCreated(false);
-      if (will.deadLine){
-        setremainingSeconds((will.deadLine - (Math.floor(Date.now()))/1000));
-        }
+      if (will.deadLine) {
+        setremainingSeconds(will.deadLine - Math.floor(Date.now()) / 1000);
+      }
     };
 
     const interval = setInterval(() => {
@@ -40,29 +40,44 @@ const ViewCryptoContract = ({ setisWillCreated }) => {
     const hourInSeconds = 3600;
     const minuteInSeconds = 60;
 
+    let timer = "";
+
     const years = Math.floor(remainingSeconds / yearInSeconds);
+
+    if (years > 0) timer += `${years} years, `;
+
     const months = Math.floor(
       (remainingSeconds % yearInSeconds) / monthInSeconds
     );
+
+    if (months > 0) timer += `${months} months, `;
+
     const days = Math.floor(
       ((remainingSeconds % yearInSeconds) % monthInSeconds) / dayInSeconds
     );
+    if (days > 0) timer += `${days} days, `;
+
     const hours = Math.floor(
       (((remainingSeconds % yearInSeconds) % monthInSeconds) % dayInSeconds) /
         hourInSeconds
     );
+    if (hours > 0) timer += `${hours} hours, `;
+
     const minutes = Math.floor(
       ((((remainingSeconds % yearInSeconds) % monthInSeconds) % dayInSeconds) %
         hourInSeconds) /
         minuteInSeconds
     );
+    if (minutes > 0) timer += `${minutes} minutes, `;
+
     const seconds =
       Math.floor(
         (((remainingSeconds % yearInSeconds) % monthInSeconds) % dayInSeconds) %
           hourInSeconds
       ) % minuteInSeconds;
+    if (seconds > 0) timer += `${seconds} seconds`;
 
-    return `${years} years, ${months} months, ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds`;
+    return timer;
   };
 
   return loading ? (
@@ -97,14 +112,28 @@ const ViewCryptoContract = ({ setisWillCreated }) => {
               Will Executing After
             </h1>
             <p className="text-slate-500 italic">
-              {remainingSeconds <= 0 ? "Deadline Ended, Will Execution Completed" : userWill.deadLine && calculateTimeRemaining(userWill.deadLine)}
+              {remainingSeconds <= 0
+                ? "Deadline Ended, Will Execution Completed"
+                : userWill.deadLine &&
+                  calculateTimeRemaining(userWill.deadLine)}
             </p>
           </div>
           <div className="mb-4">
-            <h1 className="text-2xl mb-2 font-semibold">Nominee Addresses</h1>
+            <h1 className="text-2xl mb-2 font-semibold">Nominee Details</h1>
             <ul className="list-disc text-slate-500 italic p-4">
               {userWill.nomineeAddress?.map((nominee, i) => (
-                <li key={`nomineeAddress${i}`}>{nominee}</li>
+                <li key={`nomineeAddress${i}`}>
+                  {nominee}
+                  <a
+                    href={userWill.IpfsNomineeAdharLink[i]}
+                    target={"_blank"}
+                    rel="noreferrer"
+                  >
+                    <p className="text-blue-500 italic underline">
+                      View Aadhar
+                    </p>
+                  </a>
+                </li>
               ))}
             </ul>
           </div>

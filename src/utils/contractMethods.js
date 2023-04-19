@@ -96,6 +96,7 @@ export const addWillWithDuration = async (
   willName,
   aadharLink,
   nominees,
+  nomineeAadhar,
   amount,
   duration
 ) => {
@@ -105,6 +106,7 @@ export const addWillWithDuration = async (
     const tx = await cryptoContract.addWillWithDuration(
       willName,
       aadharLink,
+      nomineeAadhar,
       nominees,
       duration,
       {

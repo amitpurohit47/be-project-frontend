@@ -27,8 +27,8 @@ const Auth = ({ setgovernment, setisLoggedIn, setofficers, setisOfficer }) => {
         const gov = await getContactOwner();
         const offs = await getOfficers();
         const mainOffs = offs?.map((off) => off.toLowerCase());
-        console.log(account);
-        console.log(gov);
+        // console.log(account);
+        // console.log(gov);
         if (mainOffs.includes(account)) setisOfficer(true);
         setofficers(mainOffs);
         setgovernment(gov.toLowerCase());

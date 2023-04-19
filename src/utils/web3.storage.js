@@ -13,7 +13,7 @@ export const storeFiles = async (files) => {
   try {
     const client = makeStorageClient();
     const cid = await client.put(files);
-    console.log("stored files with cid:", cid);
+    // console.log("stored files with cid:", cid);
     return cid;
   } catch (error) {
     console.log(error.message);
