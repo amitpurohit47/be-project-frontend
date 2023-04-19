@@ -123,7 +123,8 @@ export const addWillWithDuration = async (
 export const executeWillThroughOfficer = async (
   userAddress,
   note,
-  approved
+  approved,
+  index
 ) => {
   try {
     const cryptoContract = getCryptoContract();
@@ -131,6 +132,7 @@ export const executeWillThroughOfficer = async (
       userAddress,
       note,
       approved,
+      index,
       {
         gasLimit: 2000000,
       }

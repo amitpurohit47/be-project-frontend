@@ -9,12 +9,13 @@ const OfficerList = ({ officers }) => {
       {officers.length > 0 ? (
         <ul className="list-disc p-8">
           {officers?.map((off, i) => (
-            <li className="font-semibold" key={`officer${i}`}>{off}</li>
+            <li className=" font-semibold " key={`officer${i}`}><span className="font-bold text-xl">Officer Number {i + 1}:</span>    {off}</li>
           ))}
         </ul>
       ) : (
         <p className="p-4 font-bold">No officers added</p>
       )}
+      
     </div>
   );
 };

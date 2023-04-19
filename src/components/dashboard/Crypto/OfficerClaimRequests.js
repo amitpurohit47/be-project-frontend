@@ -6,14 +6,16 @@ import Loader from "../../utils/Loader";
 const OfficerClaimRequests = () => {
   const [loading, setloading] = useState(false);
   const [requets, setrequets] = useState([]);
+  const [flag, setFlag] = useState(1);
 
   useEffect(() => {
     const fetchRequests = async () => {
       const reqs = await getClaimRequests();
+      console.log(reqs.length)
       setrequets(reqs);
     };
     fetchRequests();
-  }, []);
+  }, [flag]);
 
   return  (
     <div>
@@ -31,9 +33,9 @@ const OfficerClaimRequests = () => {
           <Loader />
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-4 mb-4">
-          {requets.map((request, i) => (
-            <OfficerClaimRequestCard request={request} key={`request${i}`} setloading={setloading} />
+        <div className="grid grid-cols-2 gap-4 mb-4 ">
+          {requets.slice().reverse().map((request, i) => (
+            <OfficerClaimRequestCard request={request} key={`request${i}`} setloading={setloading} index={requets.length - 1- i} setFlag = {setFlag}/>
           ))}
         </div>
       )}
