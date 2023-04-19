@@ -1,0 +1,656 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "contractOwnerAddress",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "message",
+        "type": "string"
+      }
+    ],
+    "name": "printLog",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "officerAddress",
+        "type": "address"
+      }
+    ],
+    "name": "addOfficer",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "willNameArg",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "IpfsAdharLinkArg",
+        "type": "string"
+      },
+      {
+        "internalType": "string[]",
+        "name": "IpfsNomineeAdharLinkArg",
+        "type": "string[]"
+      },
+      {
+        "internalType": "string",
+        "name": "landPhotoLinkArg",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "IpfsLandDocLinkArg",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "nomineeAddressArg",
+        "type": "address"
+      }
+    ],
+    "name": "addWill",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "willNameArg",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "IpfsAdharLinkArg",
+        "type": "string"
+      },
+      {
+        "internalType": "string[]",
+        "name": "IpfsNomineeAdharLinkArg",
+        "type": "string[]"
+      },
+      {
+        "internalType": "string",
+        "name": "landPhotoLinkArg",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "IpfsLandDocLinkArg",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "nomineeAddressArg",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "deadLineArg",
+        "type": "uint256"
+      }
+    ],
+    "name": "addWillWithDuration",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "autoExecuteWill",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "autoLandId",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "claimOfficers",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "claimRepository",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "nomineeAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "userAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "note",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "IpfsClaimLink",
+        "type": "string"
+      },
+      {
+        "internalType": "bool",
+        "name": "processed",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "isApproved",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "userAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "IpfsClaimLink",
+        "type": "string"
+      }
+    ],
+    "name": "claimRequest",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "contractOwner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "userAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "noteArg",
+        "type": "string"
+      },
+      {
+        "internalType": "bool",
+        "name": "isApproved",
+        "type": "bool"
+      }
+    ],
+    "name": "executeWillThroughOfficer",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getClaimOfficers",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getClaimOfficersLength",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getClaimRepository",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "nomineeAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "userAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "note",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "IpfsClaimLink",
+            "type": "string"
+          },
+          {
+            "internalType": "bool",
+            "name": "processed",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "isApproved",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct CryptoWillContract.ClaimRequests[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getClaimRepositoryLength",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getLands",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "landId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "landOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "landPhotoLink",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "IpfsLandDocLink",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct CryptoWillContract.Land[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getLandsLength",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getTotalCollection",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getUserRepository",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "userAddress",
+        "type": "address"
+      }
+    ],
+    "name": "getWill",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "willName",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "userAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "nomineeAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "completed",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "deadLine",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "IpfsAdharLink",
+            "type": "string"
+          },
+          {
+            "internalType": "string[]",
+            "name": "IpfsNomineeAdharLink",
+            "type": "string[]"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "landId",
+                "type": "uint256"
+              },
+              {
+                "internalType": "address",
+                "name": "landOwner",
+                "type": "address"
+              },
+              {
+                "internalType": "string",
+                "name": "landPhotoLink",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "IpfsLandDocLink",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct CryptoWillContract.Land",
+            "name": "land",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct CryptoWillContract.UserWills",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "landRepository",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "landId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "landOwner",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "landPhotoLink",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "IpfsLandDocLink",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "lands",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "landId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "landOwner",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "landPhotoLink",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "IpfsLandDocLink",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "userRepository",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "willRepository",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "willName",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "userAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "nomineeAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "completed",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "deadLine",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "IpfsAdharLink",
+        "type": "string"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "landId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "landOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "landPhotoLink",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "IpfsLandDocLink",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct CryptoWillContract.Land",
+        "name": "land",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

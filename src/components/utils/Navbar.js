@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav
-      className="fixed top-4 flex items-center justify-center w-full mx-auto"
-      style={{ zIndex: 1 }}
+      className="fixed top-0 flex items-center justify-center w-full mx-auto bg-gradient-to-b from-black to-transparent"
+      style={{ zIndex: 10 }}
     >
       <div className="flex items-center justify-between w-4/5">
         <Link to={"/"}>
@@ -27,7 +27,6 @@ const Navbar = () => {
           <li>Our Products</li>
           <li>FAQ</li>
           <li>Team</li>
-          <li>Blog</li>
           <li>Contact Us</li>
         </ul>
       </div>

@@ -1,16 +1,16 @@
 import React, { useContext, useState } from "react";
+import { connectWallet } from "../../../utils/contractMethods";
 import {
-  connectWallet,
   getContactOwner,
   getOfficers,
-} from "../../../utils/contractMethods";
+} from "../../../utils/landContractMethods";
 import { CryptoContext } from "../../../context/CryptoContext";
 import { toast } from "react-toastify";
 import Loader from "../../utils/Loader";
 import governmentimg from "../../../assets/images/government.png";
 import user from "../../../assets/images/user.png";
 import officer from "../../../assets/images/officer.png";
-import metamask from "../../../assets/images/metamask.png"; 
+import metamask from "../../../assets/images/metamask.png";
 
 const Auth = ({ setgovernment, setisLoggedIn, setofficers, setisOfficer }) => {
   const { setcurrentAccount } = useContext(CryptoContext);

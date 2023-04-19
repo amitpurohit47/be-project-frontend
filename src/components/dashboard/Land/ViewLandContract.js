@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import Loader from "../../utils/Loader";
-import { getUserWill } from "../../../utils/contractMethods";
+import { getUserWill } from "../../../utils/landContractMethods";
 import { CryptoContext } from "../../../context/CryptoContext";
-import { ethers } from "ethers"; 
 
-const ViewCryptoContract = ({ setisWillCreated }) => {
+const ViewLandContract = ({ setisWillCreated }) => {
   const { currentAccount } = useContext(CryptoContext);
 
   const [loading, setloading] = useState(false);
@@ -16,8 +15,8 @@ const ViewCryptoContract = ({ setisWillCreated }) => {
     const fetchWill = async () => {
       const will = await getUserWill(currentAccount);
       setuserWill(will);
-      // console.log(will);
-      if (will.amount && parseInt(will.amount) === 0) setisWillCreated(false);
+      console.log(will);
+      if (will?.willName === "") setisWillCreated(false);
       if (will.deadLine) {
         setremainingSeconds(will.deadLine - Math.floor(Date.now()) / 1000);
       }
@@ -96,15 +95,29 @@ const ViewCryptoContract = ({ setisWillCreated }) => {
             <p className="text-slate-500 italic">{userWill.userAddress}</p>
           </div>
           <div className="mb-4">
-            <h1 className="text-2xl mb-2 font-semibold">Will Amount</h1>
-            <p className="text-slate-500 italic">
-              {userWill.amount && ethers.utils.formatEther(userWill.amount)} Eth
-            </p>
-          </div>
-          <div className="mb-4">
             <h1 className="text-2xl mb-2 font-semibold">Aadhar Link</h1>
             <a href={userWill.IpfsAdharLink} target={"_blank"} rel="noreferrer">
               <p className="text-blue-500 italic underline">View Aadhar</p>
+            </a>
+          </div>
+          <div className="mb-4">
+            <h1 className="text-2xl mb-2 font-semibold">Land Document Link</h1>
+            <a
+              href={userWill.land.IpfsLandDocLink}
+              target={"_blank"}
+              rel="noreferrer"
+            >
+              <p className="text-blue-500 italic underline">View Document</p>
+            </a>
+          </div>
+          <div className="mb-4">
+            <h1 className="text-2xl mb-2 font-semibold">Land Photo Link</h1>
+            <a
+              href={userWill.land.landPhotoLink}
+              target={"_blank"}
+              rel="noreferrer"
+            >
+              <p className="text-blue-500 italic underline">View Photo</p>
             </a>
           </div>
           <div className="mb-4">
@@ -118,29 +131,24 @@ const ViewCryptoContract = ({ setisWillCreated }) => {
                   calculateTimeRemaining(userWill.deadLine)}
             </p>
           </div>
-        </div>
           <div className="mb-4 mt-2">
-            <h1 className="text-2xl font-semibold">Nominee Details</h1>
-            <ul className="list-disc text-slate-500 italic p-4 grid grid-cols-2 gap-4">
-              {userWill.nomineeAddress?.map((nominee, i) => (
-                <li key={`nomineeAddress${i}`}>
-                  {nominee}
-                  <a
-                    href={userWill.IpfsNomineeAdharLink[i]}
-                    target={"_blank"}
-                    rel="noreferrer"
-                  >
-                    <p className="text-blue-500 italic underline">
-                      View Aadhar
-                    </p>
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <h1 className="text-2xl font-semibold">Nominee Address</h1>
+            <p className="text-slate-500 italic">{userWill.nomineeAddress}</p>
           </div>
+          <div className="mb-4 mt-2">
+          <h1 className="text-2xl mb-2 font-semibold">Nominee Aadhar</h1>
+            <a
+              href={userWill.IpfsNomineeAdharLink[0]}
+              target={"_blank"}
+              rel="noreferrer"
+            >
+              <p className="text-blue-500 italic underline">View Aadhar</p>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default ViewCryptoContract;
+export default ViewLandContract;

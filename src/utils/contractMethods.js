@@ -76,7 +76,6 @@ export const getOfficers = async () => {
   }
 };
 
-
 export const addWill = async (willName, aadharLink, nominees, amount) => {
   try {
     const cryptoContract = getCryptoContract();

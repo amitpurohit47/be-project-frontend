@@ -6,7 +6,7 @@ import CreateCryptoContract from "./CreateCryptoContract";
 import NomineeClaimRequests from "./NomineeClaimRequests";
 import OfficerClaimRequests from "./OfficerClaimRequests";
 import ViewCryptoContract from "./ViewCryptoContract";
-import Auth from "./Auth";
+import Auth from "./Auth"; 
 
 const Crypto = () => {
   const { currentAccount } = useContext(CryptoContext);

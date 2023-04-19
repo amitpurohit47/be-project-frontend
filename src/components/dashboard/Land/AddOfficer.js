@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { addOfficer } from "../../../utils/contractMethods";
+import { addOfficer } from "../../../utils/landContractMethods";
 import Loader from "../../utils/Loader";
 import { sendEmail } from "../../../utils/Email";
 import OfficerList from "./OfficerList"; 
@@ -23,7 +23,7 @@ const AddOfficer = ({ officers, setofficers, government }) => {
       if (tx) {
         sendEmail(
           officerEmail,
-          `CryptoBridge Team wants to inform you that Crypto Contract Owner ${government} has added you as the officer for Crypto Contract Claim Settlement. Your duties are to handle the claims by users for crypto contracts.`,
+          `CryptoBridge Team wants to inform you that Land Contract Owner ${government} has added you as the officer for Land Contract Claim Settlement. Your duties are to handle the claims by users for crypto contracts.`,
           "Addition of Officer"
         );
         setofficers(offs);
