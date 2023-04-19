@@ -3,14 +3,19 @@ import {
   showError,
   executeWillThroughOfficer,
 } from "../../../utils/contractMethods";
+import { toast } from "react-toastify";
 
-const OfficerClaimRequestCard = ({ request, setloading }) => {
+const OfficerClaimRequestCard = ({ request, setloading, index, setFlag }) => {
   const [note, setnote] = useState("");
+  let count = 2;
 
   const handleRequest = async (approved) => {
     setloading(true);
     try {
-      await executeWillThroughOfficer(request.userAddress, note, approved);
+      await executeWillThroughOfficer(request.userAddress, note, approved, index);
+      toast.success("Request successfully Handled");
+      setFlag(count);
+      count++;
     } catch (error) {
       showError(error);
     }

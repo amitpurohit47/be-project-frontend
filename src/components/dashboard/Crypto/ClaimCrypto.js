@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { claimRequest } from "../../../utils/contractMethods";
+import { claimRequest, getUserWill } from "../../../utils/contractMethods";
 import { storeFiles } from "../../../utils/web3.storage";
 import Loader from "../../utils/Loader";
 
@@ -11,6 +11,11 @@ const ClaimCrypto = () => {
 
   const handleClaim = async () => {
     setloading(true);
+    if(await isWillComplited() === true) {
+      setloading(false);
+      toast.error("Claim request has been approved and \n Will already completed");
+      return;
+    }
     try {
       const cid = await storeFiles(file);
       const ipfsLink = `https://${cid}.ipfs.w3s.link/${file[0].name}`;
@@ -21,6 +26,17 @@ const ClaimCrypto = () => {
     }
     setloading(false);
   };
+
+  const isWillComplited = async () => {
+    try {
+      const isCompleted = await getUserWill(address);
+      console.log("isComplited = " + isCompleted.completed);
+      return isCompleted.completed;
+    } catch (error) {
+      console.log(error);
+      toast.error("Error, try after some time...");
+    }
+  }
 
   return (
     <div className="bg-[#f4f4f4] shadow-md rounded w-full my-4">
