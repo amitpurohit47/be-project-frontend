@@ -37,7 +37,7 @@ const NomineeClaimRequests = () => {
         </p>
       </div>
       <div className="grid grid-cols-2 gap-4 mb-4">
-        {requests.map((request, i) =>
+        {requests.slice().reverse().map((request, i) =>
           request.nomineeAddress.toLowerCase() === currentAccount ? (
             <NomieeClaimRequestCard
               request={request}
