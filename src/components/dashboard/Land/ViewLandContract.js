@@ -103,7 +103,7 @@ const ViewLandContract = ({ setisWillCreated }) => {
           <div className="mb-4">
             <h1 className="text-2xl mb-2 font-semibold">Land Document Link</h1>
             <a
-              href={userWill.land.IpfsLandDocLink}
+              href={userWill?.land?.IpfsLandDocLink}
               target={"_blank"}
               rel="noreferrer"
             >
@@ -113,7 +113,7 @@ const ViewLandContract = ({ setisWillCreated }) => {
           <div className="mb-4">
             <h1 className="text-2xl mb-2 font-semibold">Land Photo Link</h1>
             <a
-              href={userWill.land.landPhotoLink}
+              href={userWill?.land?.landPhotoLink}
               target={"_blank"}
               rel="noreferrer"
             >

@@ -31,7 +31,7 @@ const About = () => {
         peace of mind knowing that your assets are in safe hands.
       </p>
       <div className="grid grid-cols-3 grid-rows-4 relative gap-4 z-10">
-        <div class="col-start-1 col-end-2 row-start-2 row-end-4 flex flex-col items-center relative min-w-[380px] p-8 rounded-2xl border border-solid bg-white z-10">
+        <div className="col-start-1 col-end-2 row-start-2 row-end-4 flex flex-col items-center relative min-w-[380px] p-8 rounded-2xl border border-solid bg-white z-10">
           <div className="h-[80px] w-[80px] mb-4 bg-[#ebf0fe] flex justify-center items-center rounded-xl">
             <img src={create} alt="create" />
           </div>
@@ -43,7 +43,7 @@ const About = () => {
             Create Digital Assets
           </h5>
         </div>
-        <div class="col-start-2 col-end-3 row-start-1 row-end-3 flex flex-col items-center relative min-w-[380px] p-8 rounded-2xl border border-solid bg-white z-10">
+        <div className="col-start-2 col-end-3 row-start-1 row-end-3 flex flex-col items-center relative min-w-[380px] p-8 rounded-2xl border border-solid bg-white z-10">
           <div className="h-[80px] w-[80px] mb-4 bg-[#ebf0fe] flex justify-center items-center rounded-xl">
             <img src={distribute} alt="distribute" />
           </div>
@@ -55,7 +55,7 @@ const About = () => {
             Add Assets and Nominees to our Platform
           </h5>
         </div>
-        <div class="col-start-3 col-end-4 row-start-2 row-end-4 flex flex-col items-center relative min-w-[380px] p-8 rounded-2xl border border-solid bg-white z-10">
+        <div className="col-start-3 col-end-4 row-start-2 row-end-4 flex flex-col items-center relative min-w-[380px] p-8 rounded-2xl border border-solid bg-white z-10">
           <div className="h-[80px] w-[80px] mb-4 bg-[#ebf0fe] flex justify-center items-center rounded-xl">
             <img src={manage} alt="manage" />
           </div>
@@ -67,7 +67,7 @@ const About = () => {
             Nominees Claim Assets and Officer Reviews Claims
           </h5>
         </div>
-        <div class="col-start-2 col-end-3 row-start-3 row-end-5 flex flex-col items-center relative min-w-[380px] p-8 rounded-2xl border border-solid bg-white z-10">
+        <div className="col-start-2 col-end-3 row-start-3 row-end-5 flex flex-col items-center relative min-w-[380px] p-8 rounded-2xl border border-solid bg-white z-10">
           <div className="h-[80px] w-[80px] mb-4 bg-[#ebf0fe] flex justify-center items-center rounded-xl">
             <img src={protect} alt="protect" />
           </div>

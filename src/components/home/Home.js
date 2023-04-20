@@ -3,6 +3,7 @@ import Landing from "./Landing";
 import Background from "./Background";
 import Navbar from "../utils/Navbar";
 import About from "./About";
+import Team from "./Team";
 
 function Home() {
 
@@ -12,6 +13,7 @@ function Home() {
       <Background />
       <Landing />
       <About />
+      <Team />
     </div>
   );
 }
