@@ -139,9 +139,9 @@ const CreateLandContract = ({ setisWillCreated }) => {
         <div className="bg-[#f4f4f4] rounded shadow-md pr-6 pb-6 h-[325px]">
           <div className="p-4">
             <p className="text-xl mb-2 font-bold">
-              Upload Land Document{" "}
+              Upload Industrial Estate Document{" "}
               <span className="italic text-slate-500 text-xs">
-                For Proof of Land Ownership
+                For Proof of Industrial Estate Ownership
               </span>
             </p>
             <input
@@ -159,9 +159,9 @@ const CreateLandContract = ({ setisWillCreated }) => {
           </div>
           <div className="p-4">
             <p className="text-xl mb-2 font-bold">
-              Upload Land Photo{" "}
+              Upload Industrial Estate Photo{" "}
               <span className="italic text-slate-500 text-xs">
-                For Land Records
+                For Industrial Estate Records
               </span>
             </p>
             <input
@@ -279,8 +279,8 @@ const CreateLandContract = ({ setisWillCreated }) => {
                 Specifies time period after which Contract will be executed
               </li>
               <li>
-                After specified period contract amount will be transferred to
-                nominees equally
+                After specified period Industrial Estate will be transferred to
+                nominee
               </li>
               <li>
                 Carefully Check duration since it cannot be changed once will is

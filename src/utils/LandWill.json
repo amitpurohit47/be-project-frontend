@@ -49,9 +49,9 @@
         "type": "string"
       },
       {
-        "internalType": "string[]",
+        "internalType": "string",
         "name": "IpfsNomineeAdharLinkArg",
-        "type": "string[]"
+        "type": "string"
       },
       {
         "internalType": "string",
@@ -87,9 +87,9 @@
         "type": "string"
       },
       {
-        "internalType": "string[]",
+        "internalType": "string",
         "name": "IpfsNomineeAdharLinkArg",
-        "type": "string[]"
+        "type": "string"
       },
       {
         "internalType": "string",
@@ -247,6 +247,11 @@
         "internalType": "bool",
         "name": "isApproved",
         "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "i",
+        "type": "uint256"
       }
     ],
     "name": "executeWillThroughOfficer",
@@ -455,9 +460,9 @@
             "type": "string"
           },
           {
-            "internalType": "string[]",
+            "internalType": "string",
             "name": "IpfsNomineeAdharLink",
-            "type": "string[]"
+            "type": "string"
           },
           {
             "components": [
@@ -620,6 +625,11 @@
       {
         "internalType": "string",
         "name": "IpfsAdharLink",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "IpfsNomineeAdharLink",
         "type": "string"
       },
       {

@@ -5,7 +5,6 @@ import PrimaryButton from "../utils/PrimaryButton";
 import { Link } from "react-router-dom";
 
 const Landing = () => {
-
   return (
     <div className="relative grid place-items-center h-screen w-screen mt-4">
       <div
@@ -19,15 +18,18 @@ const Landing = () => {
             <h1 className="text-8xl font-bold mb-16">CryptoBridge</h1>
             <p
               className="w-4/5 text-2xl mb-12"
-              style={{
-                fontFamily: "Roboto, sans-serif",
-              }}
+              style={{ fontFamily: "Hanken Grotesk, sans-serif" }}
             >
               A new way to secure your digital assets and their futher
               descendants through Smart Contracts
             </p>
             <PrimaryButton>
-              <Link to="/dashboard">Try Our App →</Link>
+              <Link
+                to="/dashboard"
+                style={{ fontFamily: "Hanken Grotesk, sans-serif" }}
+              >
+                Try Our App →
+              </Link>
             </PrimaryButton>
           </div>
           <div>

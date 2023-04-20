@@ -101,7 +101,7 @@ const ViewLandContract = ({ setisWillCreated }) => {
             </a>
           </div>
           <div className="mb-4">
-            <h1 className="text-2xl mb-2 font-semibold">Land Document Link</h1>
+            <h1 className="text-2xl mb-2 font-semibold">Industrial Estate Document Link</h1>
             <a
               href={userWill.land.IpfsLandDocLink}
               target={"_blank"}
@@ -111,7 +111,7 @@ const ViewLandContract = ({ setisWillCreated }) => {
             </a>
           </div>
           <div className="mb-4">
-            <h1 className="text-2xl mb-2 font-semibold">Land Photo Link</h1>
+            <h1 className="text-2xl mb-2 font-semibold">Industrial Estate Photo Link</h1>
             <a
               href={userWill.land.landPhotoLink}
               target={"_blank"}

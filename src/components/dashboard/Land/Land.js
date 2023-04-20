@@ -8,7 +8,7 @@ import OfficerClaimRequests from "./OfficerClaimRequests";
 import ViewLandContract from "./ViewLandContract";
 import Auth from "./Auth"; 
 
-const Crypto = () => {
+const Land = () => {
   const { currentAccount } = useContext(CryptoContext);
   const [government, setgovernment] = useState("");
   const [isOfficer, setisOfficer] = useState(false);
@@ -90,4 +90,4 @@ const Crypto = () => {
   );
 };
 
-export default Crypto;
+export default Land;

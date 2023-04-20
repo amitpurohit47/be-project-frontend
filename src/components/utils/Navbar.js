@@ -21,13 +21,58 @@ const Navbar = () => {
         </Link>
         <ul
           className="list-none flex items-center justify-around text-white text-xl"
-          style={{ flex: 0.8 }}
+          style={{ flex: 0.8, fontFamily: "Hanken Grotesk, sans-serif" }}
         >
-          <li>About CryptoBridge</li>
-          <li>Our Products</li>
-          <li>FAQ</li>
-          <li>Team</li>
-          <li>Contact Us</li>
+          <li
+            className="cursor-pointer"
+            onClick={() =>
+              document.getElementById("about").scrollIntoView({
+                behavior: "smooth",
+              })
+            }
+          >
+            About CryptoBridge
+          </li>
+          <li
+            className="cursor-pointer"
+            onClick={() =>
+              document.getElementById("products").scrollIntoView({
+                behavior: "smooth",
+              })
+            }
+          >
+            Our Products
+          </li>
+          <li
+            className="cursor-pointer"
+            onClick={() =>
+              document.getElementById("faq").scrollIntoView({
+                behavior: "smooth",
+              })
+            }
+          >
+            FAQ
+          </li>
+          <li
+            className="cursor-pointer"
+            onClick={() =>
+              document.getElementById("team").scrollIntoView({
+                behavior: "smooth",
+              })
+            }
+          >
+            Team
+          </li>
+          <li
+            className="cursor-pointer"
+            onClick={() =>
+              document.getElementById("contact").scrollIntoView({
+                behavior: "smooth",
+              })
+            }
+          >
+            Contact Us
+          </li>
         </ul>
       </div>
     </nav>

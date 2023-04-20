@@ -13,7 +13,7 @@ const UserDashBoard = () => {
   const [activeTab, setactiveTab] = useState("crypto");
 
   return (
-    <div className="h-screen flex">
+    <div className="h-screen flex" style={{ fontFamily: "Lato, sans-serif" }}>
       <div
         id="left"
         className="w-1/5 h-full relative"
@@ -156,7 +156,7 @@ const UserDashBoard = () => {
             case "commercial":
               return <Commercial />;
             case "car":
-              return <Car />
+              return <Car />;
             default:
               return null;
           }

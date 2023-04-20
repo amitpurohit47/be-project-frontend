@@ -7,18 +7,24 @@ import bg from "../../assets/images/bg.webp";
 
 const About = () => {
   return (
-    <div className="w-4/5 mx-auto mb-8">
+    <div className="w-4/5 mx-auto mb-8" id="about">
       <h1 className="text-white font-bold text-center text-5xl mb-8">
         About CryptoBridge
       </h1>
-      <p className="text-white text-center text-2xl mb-4">
+      <p
+        className="text-white text-center text-2xl mb-4"
+        style={{ fontFamily: "Hanken Grotesk, sans-serif" }}
+      >
         Our platform provides a secure and convenient way to secure the transfer
         of your digital assets such as cryptocurrencies, digitalized land
         documents, vehicle documents, and other assets to your loved ones in a
         matter of minutes. We prioritize security and privacy, ensuring that
         your assets are protected throughout the transfer process.
       </p>
-      <p className="text-white text-center text-2xl mb-16">
+      <p
+        className="text-white text-center text-2xl mb-16"
+        style={{ fontFamily: "Hanken Grotesk, sans-serif" }}
+      >
         At our core, we are committed to providing the highest level of customer
         satisfaction. We believe in transparency, efficiency, and a commitment
         to excellence in everything we do. With our platform, you can enjoy
@@ -30,7 +36,10 @@ const About = () => {
             <img src={create} alt="create" />
           </div>
           <span className="text-slate-500">Step 1</span>
-          <h5 className="text-xl font-bold text-center">
+          <h5
+            className="text-xl font-bold text-center"
+            style={{ fontFamily: "Hanken Grotesk, sans-serif" }}
+          >
             Create Digital Assets
           </h5>
         </div>
@@ -39,7 +48,10 @@ const About = () => {
             <img src={distribute} alt="distribute" />
           </div>
           <span className="text-slate-500">Step 2</span>
-          <h5 className="text-xl font-bold text-center">
+          <h5
+            className="text-xl font-bold text-center"
+            style={{ fontFamily: "Hanken Grotesk, sans-serif" }}
+          >
             Add Assets and Nominees to our Platform
           </h5>
         </div>
@@ -48,7 +60,10 @@ const About = () => {
             <img src={manage} alt="manage" />
           </div>
           <span className="text-slate-500">Step 3</span>
-          <h5 className="text-xl font-bold text-center">
+          <h5
+            className="text-xl font-bold text-center"
+            style={{ fontFamily: "Hanken Grotesk, sans-serif" }}
+          >
             Nominees Claim Assets and Officer Reviews Claims
           </h5>
         </div>
@@ -57,7 +72,10 @@ const About = () => {
             <img src={protect} alt="protect" />
           </div>
           <span className="text-slate-500">Step 4</span>
-          <h5 className="text-xl font-bold text-center">
+          <h5
+            className="text-xl font-bold text-center"
+            style={{ fontFamily: "Hanken Grotesk, sans-serif" }}
+          >
             Funds Distributed to Nominees Automatically or through Officer
           </h5>
         </div>
