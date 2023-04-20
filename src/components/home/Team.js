@@ -1,4 +1,7 @@
 import React from "react";
+import aditya from "../../assets/images/aditya.jpeg";
+import amit from "../../assets/images/amit.jpeg";
+import ganesh from "../../assets/images/ganesh.jpg";
 
 function Team() {
   return (
@@ -29,16 +32,26 @@ function Team() {
           </div>
           <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-3">
             <div className="items-center bg-gray-50 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700 w-80 h-50">
-              <a href="#">
+              <a
+                href="https://www.linkedin.com/in/aditya-sonawane-8b8b021b5/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <img
                   className="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png"
+                  src={aditya}
                   alt="Bonnie Avatar"
                 />
               </a>
               <div className="p-5">
                 <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  <a href="#">Aditya Sonawane</a>
+                  <a
+                    href="https://www.linkedin.com/in/aditya-sonawane-8b8b021b5/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Aditya Sonawane
+                  </a>
                 </h3>
                 <span className="text-gray-500 dark:text-gray-400">
                   Developer
@@ -46,16 +59,26 @@ function Team() {
               </div>
             </div>
             <div className="items-center bg-gray-50 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 w-80 h-50">
-              <a href="#">
+              <a
+                href="https://www.linkedin.com/in/amitpurohit47/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <img
                   className="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
+                  src={amit}
                   alt="Jese Avatar"
                 />
               </a>
               <div className="p-5">
                 <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  <a href="#">Amit Purohit</a>
+                  <a
+                    href="https://www.linkedin.com/in/amitpurohit47/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Amit Purohit
+                  </a>
                 </h3>
                 <span className="text-gray-500 dark:text-gray-400">
                   Developer
@@ -64,16 +87,26 @@ function Team() {
             </div>
 
             <div className="items-center bg-gray-50 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 w-80 h-50">
-              <a href="#">
+              <a
+                href="https://www.linkedin.com/in/ganeshkandepalli/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <img
                   className="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/sofia-mcguire.png"
+                  src={ganesh}
                   alt="Sofia Avatar"
                 />
               </a>
               <div className="p-5">
                 <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  <a href="#">Ganesh Khandepalli</a>
+                  <a
+                    href="https://www.linkedin.com/in/ganeshkandepalli/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Ganesh Khandepalli
+                  </a>
                 </h3>
                 <span className="text-gray-500 dark:text-gray-400">
                   Developer

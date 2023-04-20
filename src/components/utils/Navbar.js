@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav
       className="fixed top-0 flex items-center justify-center w-full mx-auto bg-gradient-to-b from-black to-transparent"
-      style={{ zIndex: 10 }}
+      style={{ zIndex: 99 }}
     >
       <div className="flex items-center justify-between w-4/5">
         <Link to={"/"}>
@@ -20,9 +20,12 @@ const Navbar = () => {
           </div>
         </Link>
         <ul
-          className="list-none flex items-center justify-around text-white text-xl"
+          className="list-none flex items-center justify-around text-white text-xl font-bold"
           style={{ flex: 0.8, fontFamily: "Hanken Grotesk, sans-serif" }}
         >
+          <li>
+            <Link to={"/dashboard"}>Our App</Link>
+          </li>
           <li
             className="cursor-pointer"
             onClick={() =>
@@ -62,16 +65,6 @@ const Navbar = () => {
             }
           >
             Team
-          </li>
-          <li
-            className="cursor-pointer"
-            onClick={() =>
-              document.getElementById("contact").scrollIntoView({
-                behavior: "smooth",
-              })
-            }
-          >
-            Contact Us
           </li>
         </ul>
       </div>
