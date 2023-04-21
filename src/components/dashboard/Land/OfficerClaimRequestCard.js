@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import {
-  showError,
   executeWillThroughOfficer,
+} from "../../../utils/landContractMethods";
+import {
+  showError
 } from "../../../utils/contractMethods";
 
-const OfficerClaimRequestCard = ({ request, setloading }) => {
+const OfficerClaimRequestCard = ({ request, setloading, index }) => {
   const [note, setnote] = useState("");
 
   const handleRequest = async (approved) => {
     setloading(true);
     try {
-      await executeWillThroughOfficer(request.userAddress, note, approved);
+      await executeWillThroughOfficer(request.userAddress, note, approved, index);
     } catch (error) {
       showError(error);
     }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getClaimRequests } from "../../../utils/contractMethods";
+import { getClaimRequests } from "../../../utils/landContractMethods";
 import OfficerClaimRequestCard from "./OfficerClaimRequestCard";
 import Loader from "../../utils/Loader";
 
@@ -10,6 +10,7 @@ const OfficerClaimRequests = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       const reqs = await getClaimRequests();
+      console.log(reqs);
       setrequets(reqs);
     };
     fetchRequests();
@@ -33,7 +34,7 @@ const OfficerClaimRequests = () => {
       ) : (
         <div className="grid grid-cols-2 gap-4 mb-4">
           {requets.map((request, i) => (
-            <OfficerClaimRequestCard request={request} key={`request${i}`} setloading={setloading} />
+            <OfficerClaimRequestCard request={request} key={`request${i}`} setloading={setloading} index={i} />
           ))}
         </div>
       )}
