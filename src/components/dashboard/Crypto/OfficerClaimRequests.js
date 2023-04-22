@@ -11,7 +11,7 @@ const OfficerClaimRequests = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       const reqs = await getClaimRequests();
-      console.log(reqs.length)
+      console.log(reqs)
       setrequets(reqs);
     };
     fetchRequests();

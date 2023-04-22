@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 const OfficerClaimRequestCard = ({ request, setloading, index, setFlag }) => {
   const [note, setnote] = useState("");
-  let count = 2;
+  let count = index * 2;
 
   const handleRequest = async (approved) => {
     setloading(true);
@@ -15,6 +15,7 @@ const OfficerClaimRequestCard = ({ request, setloading, index, setFlag }) => {
       await executeWillThroughOfficer(request.userAddress, note, approved, index);
       toast.success("Request successfully Handled");
       setFlag(count);
+      console.log("count = " + count);
       count++;
     } catch (error) {
       showError(error);
@@ -24,6 +25,9 @@ const OfficerClaimRequestCard = ({ request, setloading, index, setFlag }) => {
 
   return (
     <div className="bg-[#f4f4f4] p-4 rounded shadow-md">
+      <div type="button" class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-yellow-300 dark:text-gray-800 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800">
+       <p className="text-l font-bold">Claim Request No: {index + 1}</p>
+      </div>
       <p className="text-xl font-bold">Nominee Address</p>
       <p className="text-slate-500 text-sm italic p-4">
         {request.nomineeAddress}
@@ -33,7 +37,7 @@ const OfficerClaimRequestCard = ({ request, setloading, index, setFlag }) => {
       <p className="text-xl font-bold">Document for Proof of Claim</p>
       <a href={request.IpfsClaimLink}>
         <p className="text-blue-500 text-sm italic p-4 underline">
-          View Document
+          View Full Document
         </p>
       </a>
       <p className="text-xl font-bold mb-4">
