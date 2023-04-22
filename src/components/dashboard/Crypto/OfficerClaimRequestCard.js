@@ -12,7 +12,12 @@ const OfficerClaimRequestCard = ({ request, setloading, index, setFlag }) => {
   const handleRequest = async (approved) => {
     setloading(true);
     try {
-      await executeWillThroughOfficer(request.userAddress, note, approved, index);
+      await executeWillThroughOfficer(
+        request.userAddress,
+        note,
+        approved,
+        index
+      );
       toast.success("Request successfully Handled");
       setFlag(count);
       console.log("count = " + count);
@@ -25,8 +30,11 @@ const OfficerClaimRequestCard = ({ request, setloading, index, setFlag }) => {
 
   return (
     <div className="bg-[#f4f4f4] p-4 rounded shadow-md">
-      <div type="button" class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-yellow-300 dark:text-gray-800 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800">
-       <p className="text-l font-bold">Claim Request No: {index + 1}</p>
+      <div
+        type="button"
+        class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-yellow-300 dark:text-gray-800 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800"
+      >
+        <p className="text-l font-bold">Claim Request No: {index + 1}</p>
       </div>
       <p className="text-xl font-bold">Nominee Address</p>
       <p className="text-slate-500 text-sm italic p-4">
@@ -35,8 +43,7 @@ const OfficerClaimRequestCard = ({ request, setloading, index, setFlag }) => {
       <p className="text-xl font-bold">Will Owner Address</p>
       <p className="text-slate-500 text-sm italic p-4">{request.userAddress}</p>
       <p className="text-xl font-bold">Document for Proof of Claim</p>
-      <a target="_blank"
-                          rel="noopener noreferrer" href={request.IpfsClaimLink}>
+      <a target="_blank" rel="noopener noreferrer" href={request.IpfsClaimLink}>
         <p className="text-blue-500 text-sm italic p-4 underline">
           View Full Document
         </p>
@@ -44,19 +51,29 @@ const OfficerClaimRequestCard = ({ request, setloading, index, setFlag }) => {
       <p className="text-xl font-bold mb-4">
         Reason for Rejection/Acceptance Note
       </p>
-      {request.note !== " " ? <p className="font-semibold px-4 text-slate-500 italic text-xl">{request.note}</p> : <textarea
-        required
-        value={note}
-        onChange={(e) => setnote(e.target.value)}
-        placeholder="Reason for Rejection/Acceptance Note"
-        className="mb-4 w-full textarea-info text-sm p-1 placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-      ></textarea>}
+      {request.note !== " " ? (
+        <p className="font-semibold px-4 text-slate-500 italic text-xl">
+          {request.note}
+        </p>
+      ) : (
+        <textarea
+          required
+          value={note}
+          onChange={(e) => setnote(e.target.value)}
+          placeholder="Reason for Rejection/Acceptance Note"
+          className="mb-4 w-full textarea-info text-sm p-1 placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+        ></textarea>
+      )}
       <p className="text-xl font-bold mb-4">Approve/Reject Request</p>
       {request.processed ? (
         request.isApproved ? (
-          <p className="text-green-500 text-xl italic font-semibold px-4">Approved</p>
+          <p className="text-green-500 text-xl italic font-semibold px-4">
+            Approved
+          </p>
         ) : (
-          <p className="text-red-500 text-xl italic font-semibold px-4">Rejected</p>
+          <p className="text-red-500 text-xl italic font-semibold px-4">
+            Rejected
+          </p>
         )
       ) : (
         <div className="flex">
