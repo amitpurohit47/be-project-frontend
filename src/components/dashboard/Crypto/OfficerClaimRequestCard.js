@@ -35,7 +35,8 @@ const OfficerClaimRequestCard = ({ request, setloading, index, setFlag }) => {
       <p className="text-xl font-bold">Will Owner Address</p>
       <p className="text-slate-500 text-sm italic p-4">{request.userAddress}</p>
       <p className="text-xl font-bold">Document for Proof of Claim</p>
-      <a href={request.IpfsClaimLink}>
+      <a target="_blank"
+                          rel="noopener noreferrer" href={request.IpfsClaimLink}>
         <p className="text-blue-500 text-sm italic p-4 underline">
           View Full Document
         </p>
