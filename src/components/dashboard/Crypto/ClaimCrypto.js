@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { claimRequest, getUserWill } from "../../../utils/contractMethods";
+import { claimRequest, getUserWill, getClaimRequests } from "../../../utils/contractMethods";
 import { storeFiles } from "../../../utils/web3.storage";
 import Loader from "../../utils/Loader";
 
@@ -14,6 +14,10 @@ const ClaimCrypto = () => {
     if(await isWillComplited() === true) {
       setloading(false);
       toast.error("Claim request has been approved and \n Will already completed");
+      return;
+    }
+    if(await isClaimInProcess() === true) {
+      setloading(false);
       return;
     }
     try {
@@ -35,6 +39,24 @@ const ClaimCrypto = () => {
     } catch (error) {
       console.log(error);
       toast.error("Error, try after some time...");
+    }
+  }
+
+  const isClaimInProcess = async () => {
+    try {
+      let requests = await getClaimRequests();
+      for(let i = 0; i < requests.length; i++){
+        if(requests[i].processed === false && requests[i].userAddress === address) {
+          console.log(requests[i]);
+          toast.error("Request already is in process for user :\n" + address);
+          return true;
+        }
+      }
+      return false;
+    }catch(e) {
+      console.log("isClaimInProcess = " + e);
+      toast.error("try after some time");
+      return true;
     }
   }
 
