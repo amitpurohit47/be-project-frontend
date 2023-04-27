@@ -170,10 +170,10 @@ export const claimRequest = async (userAddress, claimDocument) => {
   }
 };
 
-export const addOfficer = async (officer) => {
+export const addOfficer = async (officer, officerName, officerAadhar) => {
   try {
     const cryptoContract = getCryptoContract();
-    const tx = await cryptoContract.addOfficer(officer, {
+    const tx = await cryptoContract.addOfficer(officer, officerName, officerAadhar, {
       gasLimit: 2000000,
     });
     await tx.wait();

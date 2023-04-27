@@ -1,32 +1,94 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { addOfficer } from "../../../utils/contractMethods";
+import { addOfficer, getOfficers } from "../../../utils/contractMethods";
 import Loader from "../../utils/Loader";
 import { sendEmail } from "../../../utils/Email";
 import OfficerList from "./OfficerList"; 
 
 const AddOfficer = ({ officers, setofficers, government }) => {
   const [officer, setofficer] = useState("");
+  const [officerName, setOfficerName] = useState("");
+  const [officerAadhar, setOfficerAadhar] = useState("");
   const [officerEmail, setofficerEmail] = useState("");
   const [loading, setloading] = useState(false);
+  const [newOfficers, setNewOfficers] = useState([]);
+  const [flag, setFlag] = useState(1);
 
   useEffect(() => {
+    const claimOff = async () => {
+      const mt = await getOfficers();
+      setNewOfficers(mt);
+      console.log(mt)
+    }
+    claimOff();
+    
+  },[flag]);
 
-  },[officers]);
+  function hasWhiteSpace(s) {
+    return /\s/g.test(s);
+  }
+
+  function validateAadhar(aadharNumber) {
+    // Aadhar number should be exactly 12 digits long
+    if (aadharNumber.length !== 12) {
+      return false;
+    }
+  
+    // Aadhar number should only contain digits
+    if (!/^\d+$/.test(aadharNumber)) {
+      return false;
+    }
+  
+    // Aadhar number is valid
+    return true;
+  }
+  
+
+  function validateEmail(email) {
+    // regular expression to match the email format
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
 
   const handleAdd = async () => {
+    if(officer === "" || officerName === "" || officerAadhar === "" || officerEmail === "") {
+      toast.error("Enter all fields");
+      return;
+    }
+    if(validateEmail(officerEmail) === false) {
+      toast.error("Plz enter correct email");
+      return;
+    }
+    if(validateAadhar(officerAadhar) === false) {
+      toast.error("Plz enter valid aadhar number");
+      return;
+    }
+    if (
+      officer.length !== 42 ||
+      hasWhiteSpace(officer) === true
+    ) {
+      toast.error(
+        "address should contain 42 chars. and \n should not contain space character in it"
+      );
+      return;
+    }
     setloading(true);
     try {
-      const tx = await addOfficer(officer);
+      const tx = await addOfficer(officer, officerName, officerAadhar);
       const offs = officers;
       offs.push(officer);
+      setFlag(flag + newOfficers.length+ 1);
+      console.log(offs);
+
       if (tx) {
         sendEmail(
           officerEmail,
           `CryptoBridge Team wants to inform you that Crypto Contract Owner ${government} has added you as the officer for Crypto Contract Claim Settlement. Your duties are to handle the claims by users for crypto contracts.`,
           "Addition of Officer"
         );
-        setofficers(offs);
+        setofficers([offs]);
+        setOfficerName("");
+        setOfficerAadhar("");
         toast.success("Officer added successfully");
       }
     } catch (error) {
@@ -66,6 +128,40 @@ const AddOfficer = ({ officers, setofficers, government }) => {
         </div>
         <div className="px-4 pt-2">
           <p className="text-xl mb-2 font-bold">
+            Enter Officer Full Name
+            <span className="italic text-slate-500 text-xs">
+              {" "}
+              To keep mapping of address and user
+            </span>
+          </p>
+          <input
+            className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+            placeholder="Enter Officer Full Name"
+            type="text"
+            name="officer email"
+            value={officerName}
+            onChange={(e) => setOfficerName(e.target.value)}
+          />
+        </div>
+        <div className="px-4 pt-2">
+          <p className="text-xl mb-2 font-bold">
+            Enter Officer Aadhar No.
+            <span className="italic text-slate-500 text-xs">
+              {" "}
+              To keep mapping of address and user
+            </span>
+          </p>
+          <input
+            className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+            placeholder="Enter Officer Aadhar No."
+            type="text"
+            name="officer email"
+            value={officerAadhar}
+            onChange={(e) => setOfficerAadhar(e.target.value)}
+          />
+        </div>
+        <div className="px-4 pt-2">
+          <p className="text-xl mb-2 font-bold">
             Enter Officer Email
             <span className="italic text-slate-500 text-xs">
               {" "}
@@ -90,7 +186,7 @@ const AddOfficer = ({ officers, setofficers, government }) => {
           </button>
         </div>
       </div>
-      <OfficerList officers={officers} />
+      <OfficerList officers={newOfficers} />
     </div>
   );
 };
