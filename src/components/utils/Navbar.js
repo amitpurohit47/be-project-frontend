@@ -21,7 +21,7 @@ const Navbar = () => {
         </Link>
         <ul
           className="list-none flex items-center justify-around text-white text-xl font-bold"
-          style={{ flex: 0.8, fontFamily: "Hanken Grotesk, sans-serif" }}
+          style={{ flex: 0.5, fontFamily: "Hanken Grotesk, sans-serif" }}
         >
           <li>
             <Link to={"/dashboard"}>Our App</Link>
@@ -36,7 +36,7 @@ const Navbar = () => {
           >
             About CryptoBridge
           </li>
-          <li
+          {/* <li
             className="cursor-pointer"
             onClick={() =>
               document.getElementById("products").scrollIntoView({
@@ -55,7 +55,7 @@ const Navbar = () => {
             }
           >
             FAQ
-          </li>
+          </li> */}
           <li
             className="cursor-pointer"
             onClick={() =>
