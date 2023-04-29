@@ -27,8 +27,18 @@
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "officerAddress",
+				"name": "officerAddressArg",
 				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "officerNameArg",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "officerAdharArg",
+				"type": "string"
 			}
 		],
 		"name": "addOfficer",
@@ -116,8 +126,18 @@
 		"outputs": [
 			{
 				"internalType": "address",
-				"name": "",
+				"name": "officerAddress",
 				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "officerName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "officerAdharNo",
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
@@ -231,9 +251,26 @@
 		"name": "getClaimOfficers",
 		"outputs": [
 			{
-				"internalType": "address[]",
+				"components": [
+					{
+						"internalType": "address",
+						"name": "officerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "officerName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "officerAdharNo",
+						"type": "string"
+					}
+				],
+				"internalType": "struct CryptoWillContract.ClaimOfficer[]",
 				"name": "",
-				"type": "address[]"
+				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",

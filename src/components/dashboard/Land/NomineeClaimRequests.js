@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { getClaimRequests } from "../../../utils/contractMethods";
+import { getClaimRequests } from "../../../utils/landContractMethods";
 import Loader from "../../utils/Loader";
 import NomineeClaimRequestCard from "./NomineeClaimRequestCard";
 import { CryptoContext } from "../../../context/CryptoContext";
