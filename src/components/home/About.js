@@ -4,7 +4,9 @@ import distribute from "../../assets/images/distribute.svg";
 import manage from "../../assets/images/manage.svg";
 import protect from "../../assets/images/protect.svg";
 import bg from "../../assets/images/bg.webp";
-import metamask from "../../assets/images/metamask.png";
+// import metamask from "../../assets/images/metamask.png";
+import InstallMetamask from "./InstallMetamask";
+// import Products from "./Products";
 
 const About = () => {
   return (
@@ -31,7 +33,7 @@ const About = () => {
         to excellence in everything we do. With our platform, you can enjoy
         peace of mind knowing that your assets are in safe hands.
       </p>
-      <p
+      {/* <p
         className="text-white text-center text-2xl mb-4"
         style={{ fontFamily: "Hanken Grotesk, sans-serif" }}
       >
@@ -54,8 +56,8 @@ const About = () => {
           />{" "}
           Install Metamask
         </a>
-      </button>
-      <div className="grid grid-cols-3 grid-rows-4 relative gap-4 z-10">
+      </button> */}
+      <div className="grid grid-cols-3 grid-rows-4 relative gap-4 z-10 mb-16">
         <div className="col-start-1 col-end-2 row-start-2 row-end-4 flex flex-col items-center relative min-w-[380px] p-8 rounded-2xl border border-solid bg-white z-10">
           <div className="h-[80px] w-[80px] mb-4 bg-[#ebf0fe] flex justify-center items-center rounded-xl">
             <img src={create} alt="create" />
@@ -110,6 +112,8 @@ const About = () => {
           className="absolute max-w-full max-h-full top-4 bottom-0 right-0 left-48 z-0"
         />
       </div>
+      {/* <Products /> */}
+      <InstallMetamask />
     </div>
   );
 };

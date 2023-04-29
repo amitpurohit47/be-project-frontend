@@ -21,10 +21,10 @@ const Navbar = () => {
         </Link>
         <ul
           className="list-none flex items-center justify-around text-white text-xl font-bold"
-          style={{ flex: 0.5, fontFamily: "Hanken Grotesk, sans-serif" }}
+          style={{ flex: 0.7, fontFamily: "Hanken Grotesk, sans-serif" }}
         >
           <li>
-            <Link to={"/dashboard"}>Our App</Link>
+            <Link to={"/dashboard"}>Sign In</Link>
           </li>
           <li
             className="cursor-pointer"
@@ -34,7 +34,7 @@ const Navbar = () => {
               })
             }
           >
-            About CryptoBridge
+            About
           </li>
           {/* <li
             className="cursor-pointer"
@@ -44,18 +44,19 @@ const Navbar = () => {
               })
             }
           >
-            Our Products
-          </li>
+            Products
+          </li> */}
+         
           <li
             className="cursor-pointer"
             onClick={() =>
-              document.getElementById("faq").scrollIntoView({
+              document.getElementById("metamask").scrollIntoView({
                 behavior: "smooth",
               })
             }
           >
-            FAQ
-          </li> */}
+            Metamask
+          </li> 
           <li
             className="cursor-pointer"
             onClick={() =>

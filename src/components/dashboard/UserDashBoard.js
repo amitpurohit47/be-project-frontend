@@ -30,7 +30,7 @@ const UserDashBoard = () => {
         </div>
 
         <div className="pl-4">
-          <div
+          {/* <div
             id="crypto"
             className={`${
               activeTab === "crypto" ? "bg-[#04004D] font-bold" : ""
@@ -44,8 +44,8 @@ const UserDashBoard = () => {
             >
               Crypto
             </p>
-          </div>
-          <div
+          </div> */}
+          {/* <div
             id="land"
             className={`${
               activeTab === "land" ? "bg-[#04004D] font-bold" : ""
@@ -59,7 +59,7 @@ const UserDashBoard = () => {
             >
               Land
             </p>
-          </div>
+          </div> */}
           <div
             id="flats"
             className={`${

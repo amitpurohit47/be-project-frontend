@@ -28,7 +28,7 @@ const Landing = () => {
                 to="/dashboard"
                 style={{ fontFamily: "Hanken Grotesk, sans-serif" }}
               >
-                Try Our App →
+                Sign In →
               </Link>
             </PrimaryButton>
           </div>

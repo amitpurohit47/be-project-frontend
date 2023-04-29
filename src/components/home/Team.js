@@ -27,10 +27,22 @@ function Team() {
               We are a team of passionate developers willing to understand
               Customer Problems and provide solutions using technology. We are
               guided by the expertise of{" "}
-              <span className="font-bold">Prof. Sumit S Shevtekar</span>
+              <span className="font-bold">
+                <a
+                  href="https://www.linkedin.com/in/sumit-shevtekar-19b54415/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline"
+                >
+                  Prof. Sumit S Shevtekar
+                </a>
+              </span>
             </p>
           </div>
-          <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-3">
+          <div
+            className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-3"
+            style={{ fontFamily: "Hanken Grotesk, sans-serif" }}
+          >
             <div className="items-center bg-gray-50 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700 w-80 h-50">
               <a
                 href="https://www.linkedin.com/in/aditya-sonawane-8b8b021b5/"
