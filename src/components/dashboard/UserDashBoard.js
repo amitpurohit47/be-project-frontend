@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/images/logo.png";
 import Land from "./Land/Land";
 import Support from "./Support";
@@ -11,6 +11,13 @@ import { Link } from "react-router-dom";
 
 const UserDashBoard = () => {
   const [activeTab, setactiveTab] = useState("crypto");
+
+  useEffect(() => {
+    window.history.pushState(null, document.title, window.location.href);
+    window.addEventListener("popstate", function (event) {
+      window.history.pushState(null, document.title, window.location.href);
+    });
+  }, []);
 
   return (
     <div className="h-screen flex" style={{ fontFamily: "Lato, sans-serif" }}>

@@ -23,14 +23,32 @@ const Landing = () => {
               A new way to secure your digital assets and their futher
               descendants through Smart Contracts
             </p>
-            <PrimaryButton>
-              <Link
-                to="/dashboard"
-                style={{ fontFamily: "Hanken Grotesk, sans-serif" }}
-              >
-                Sign In →
-              </Link>
-            </PrimaryButton>
+            <div className="flex">
+              <PrimaryButton className="mx-2">
+                <Link
+                  to="/dashboard"
+                  style={{ fontFamily: "Hanken Grotesk, sans-serif" }}
+                >
+                  Sign In As Government→
+                </Link>
+              </PrimaryButton>
+              <PrimaryButton className="mx-2">
+                <Link
+                  to="/dashboard"
+                  style={{ fontFamily: "Hanken Grotesk, sans-serif" }}
+                >
+                  Sign In As Officer→
+                </Link>
+              </PrimaryButton>
+              <PrimaryButton className="mx-2">
+                <Link
+                  to="/dashboard"
+                  style={{ fontFamily: "Hanken Grotesk, sans-serif" }}
+                >
+                  Sign In As User→
+                </Link>
+              </PrimaryButton>
+            </div>
           </div>
           <div>
             <Lottie
