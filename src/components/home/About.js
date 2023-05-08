@@ -33,6 +33,16 @@ const About = () => {
         to excellence in everything we do. With our platform, you can enjoy
         peace of mind knowing that your assets are in safe hands.
       </p>
+      <iframe
+        width="797"
+        height="498"
+        src="https://www.youtube.com/embed/BcSxl-1dNl0"
+        title="BE project"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+        className="my-8 mx-auto"
+      ></iframe>
       {/* <p
         className="text-white text-center text-2xl mb-4"
         style={{ fontFamily: "Hanken Grotesk, sans-serif" }}
