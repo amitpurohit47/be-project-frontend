@@ -12,6 +12,7 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
   const [amount, setamount] = useState("");
   const [deadline, setdeadline] = useState(0);
   const [email, setemail] = useState("");
+  const [aadharNo, setaadharNo] = useState("");
   const [file, setfile] = useState(null);
   const [nominees, setnominees] = useState([""]);
   const [nomineesEmail, setnomineesEmail] = useState([
@@ -20,7 +21,7 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
       nomineeEmail: "",
       file: null,
       name: "",
-      aadharNo: ""
+      aadharNo: "",
     },
   ]);
   const [loading, setloading] = useState(false);
@@ -47,13 +48,22 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
         .filter((result) => result.status === "fulfilled")
         .map((result) => result.value);
       // console.log(nomineeAadhar);
+      const contractCreator = [currentAccount, email, userName, aadharNo];
+      const nomineeInfo = nomineesEmail.map((nominee, i) => [
+        nominees[i],
+        nominee.nomineeEmail,
+        nominee.name,
+        nominee.aadharNo,
+      ]);
       const tx = await addWillWithDuration(
         willName,
         ipfsLink,
         nominees,
         nomineeAadhar,
         amount,
-        duration
+        duration,
+        contractCreator,
+        nomineeInfo
       );
       if (tx) {
         nomineesEmail.forEach((mail) =>
@@ -81,7 +91,7 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
         nomineeEmail: "",
         file: null,
         name: "",
-        aadharNo: ""
+        aadharNo: "",
       },
     ]);
     setamount("");
@@ -162,7 +172,7 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
             />
           </div>
         </div>
-        <div className="bg-[#f4f4f4] rounded shadow-md pr-6 pb-6 h-[225px]">
+        <div className="bg-[#f4f4f4] rounded shadow-md pr-6 pb-6 h-[275px]">
           <div className="p-4">
             <p className="text-xl mb-2 font-bold">
               Enter Amount in Eth{" "}
@@ -177,6 +187,23 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
               name="amount"
               value={amount}
               onChange={(e) => setamount(e.target.value)}
+              required
+            />
+          </div>
+          <div className="px-4">
+            <p className="text-xl mb-2 font-bold">
+              Enter Your Aadhar No. 
+              <span className="italic text-slate-500 text-xs">
+                Enter Your Aadhar No. for our records
+              </span>
+            </p>
+            <input
+              className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              placeholder="Enter Your Aadhar No."
+              type="text"
+              name="aadharNo"
+              value={aadharNo}
+              onChange={(e) => setaadharNo(e.target.value)}
               required
             />
           </div>
@@ -201,7 +228,7 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
             />
           </div>
         </div>
-        <div className="bg-[#f4f4f4] rounded shadow-md pr-6 pb-6 h-[225px]">
+        <div className="bg-[#f4f4f4] rounded shadow-md pr-6 pb-6 h-[275px]">
           <div className="p-4">
             <p className="text-xl mb-2 font-bold">
               Enter Execution Duration of Will{" "}
@@ -325,7 +352,7 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
                 placeholder="Enter Nominee Address"
                 type="text"
                 name="nominee address"
-                value={nominee.nominee}
+                value={nominee.aadharNo}
                 required
                 onChange={(e) => {
                   const newNominees = [...nominees];
@@ -372,7 +399,7 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
                   nomineeEmail: "",
                   file: null,
                   name: "",
-                  aadharNo: ""
+                  aadharNo: "",
                 });
                 setnominees(newNominees);
                 setnomineesEmail(newNomineesEmail);
@@ -403,7 +430,7 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
                 nominee: "",
                 nomineeEmail: "",
                 name: "",
-                aadharNo: ""
+                aadharNo: "",
               },
             ]);
             setwillName("");
