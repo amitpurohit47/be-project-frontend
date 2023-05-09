@@ -8,7 +8,7 @@ const OfficerClaimRequests = () => {
   const [loading, setloading] = useState(false);
   const [requets, setrequets] = useState([]);
   const [flag, setFlag] = useState(1);
-  const [claimView, setClaimView] = useState(true);
+  const [claimView, setClaimView] = useState(false);
 
   const viewToggle = () => {
     setClaimView(!claimView);

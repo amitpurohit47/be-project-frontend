@@ -49,6 +49,40 @@
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "addToUserInfoRepo",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "userAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "adharNo",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "string",
 				"name": "willNameArg",
 				"type": "string"
@@ -67,6 +101,16 @@
 				"internalType": "address payable[]",
 				"name": "nomineeAddressArg",
 				"type": "address[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "contractCreator",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string[][]",
+				"name": "nomineeInfo",
+				"type": "string[][]"
 			}
 		],
 		"name": "addWill",
@@ -100,6 +144,16 @@
 				"internalType": "uint256",
 				"name": "deadLineArg",
 				"type": "uint256"
+			},
+			{
+				"internalType": "string[]",
+				"name": "contractCreator",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string[][]",
+				"name": "nomineeInfo",
+				"type": "string[][]"
 			}
 		],
 		"name": "addWillWithDuration",
@@ -361,6 +415,82 @@
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "userAddress",
+				"type": "address"
+			}
+		],
+		"name": "getUserInfo",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "userAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "email",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "adharNo",
+						"type": "string"
+					}
+				],
+				"internalType": "struct CryptoWillContract.UserInfo",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getUserInfoRepository",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "userAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "email",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "adharNo",
+						"type": "string"
+					}
+				],
+				"internalType": "struct CryptoWillContract.UserInfo[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "getUserRepository",
 		"outputs": [
@@ -445,6 +575,40 @@
 		"name": "revokeContract",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "userInfoRepository",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "userAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "adharNo",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
