@@ -44,13 +44,21 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
         .filter((result) => result.status === "fulfilled")
         .map((result) => result.value);
       // console.log(nomineeAadhar);
+      const contractCreatorA = ["0x4704FD648f343bE8f3DF2Ce91463D2d16423CFc8", "aditya@gmail.com", "yash gaikawad", "123243216545"]
+      const emailA = ["adi@gmail.com"]
+      const nameA = ["rutuja"]
+      const adharA = ["2375567875454"]
       const tx = await addWillWithDuration(
         willName,
         ipfsLink,
         nominees,
         nomineeAadhar,
         amount,
-        duration
+        duration,
+        contractCreatorA,
+        emailA,
+        nameA,
+        adharA
       );
       if (tx) {
         nomineesEmail.forEach((mail) =>
