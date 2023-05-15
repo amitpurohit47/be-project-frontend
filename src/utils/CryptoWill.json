@@ -108,9 +108,19 @@
 				"type": "string[]"
 			},
 			{
-				"internalType": "string[][]",
-				"name": "nomineeInfo",
-				"type": "string[][]"
+				"internalType": "string[]",
+				"name": "emailArg",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "nameArg",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "adharArg",
+				"type": "string[]"
 			}
 		],
 		"name": "addWill",
@@ -151,9 +161,19 @@
 				"type": "string[]"
 			},
 			{
-				"internalType": "string[][]",
-				"name": "nomineeInfo",
-				"type": "string[][]"
+				"internalType": "string[]",
+				"name": "emailArg",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "nameArg",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "adharArg",
+				"type": "string[]"
 			}
 		],
 		"name": "addWillWithDuration",
