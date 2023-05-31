@@ -97,7 +97,11 @@ export const addWillWithDuration = async (
   nominees,
   nomineeAadhar,
   amount,
-  duration
+  duration,
+  contractCreator,
+  emailArg,
+  nameArg,
+  adharArg
 ) => {
   try {
     const cryptoContract = getCryptoContract();
@@ -108,6 +112,10 @@ export const addWillWithDuration = async (
       nomineeAadhar,
       nominees,
       duration,
+      contractCreator,
+      emailArg,
+      nameArg,
+      adharArg,
       {
         gasLimit: 2000000,
         value,

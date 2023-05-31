@@ -20,6 +20,10 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
       file: null,
     },
   ]);
+  const [creatorAadharNo, setcreatorAadharNo] = useState("");
+  const [creatorName, setcreatorName] = useState("");
+  const [nomineeAadharNo, setnomineeAadharNo] = useState([""]);
+  const [nomineeName, setnomineeName] = useState([""]);
   const [loading, setloading] = useState(false);
 
   const { currentAccount } = useContext(CryptoContext);
@@ -44,13 +48,25 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
         .filter((result) => result.status === "fulfilled")
         .map((result) => result.value);
       // console.log(nomineeAadhar);
+      // const contractCreatorA = ["0x4704FD648f343bE8f3DF2Ce91463D2d16423CFc8", "aditya@gmail.com", "yash gaikawad", "123243216545"]
+      const contractCreatorA = [currentAccount, email, creatorName, creatorAadharNo];
+      // const emailA = ["adi@gmail.com"]
+      const emailA = nomineesEmail.map((nominee) => nominee.nomineeEmail);
+      // const nameA = ["rutuja"]
+      const nameA = [...nomineeName]
+      // const adharA = ["2375567875454"]
+      const adharA = [...nomineeAadharNo];
       const tx = await addWillWithDuration(
         willName,
         ipfsLink,
         nominees,
         nomineeAadhar,
         amount,
-        duration
+        duration,
+        contractCreatorA,
+        emailA,
+        nameA,
+        adharA
       );
       if (tx) {
         nomineesEmail.forEach((mail) =>
@@ -95,9 +111,6 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
       )}
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-[#f4f4f4] rounded shadow-md pr-6 pb-6 h-[225px]">
-          <h1 className="mt-8 text-2xl text-white bg-[#220F68] rounded-r-full py-3 pr-8 pl-4 w-fit">
-            Will Contract
-          </h1>
           <div className="p-4">
             <p className="text-xl mb-2 font-bold">
               Enter Will Name{" "}
@@ -112,6 +125,23 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
               name="willName"
               value={willName}
               onChange={(e) => setwillName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="p-4">
+            <p className="text-xl mb-2 font-bold">
+              Enter Your Name{" "}
+              <span className="italic text-slate-500 text-xs">
+              Enter Your Name for our records
+              </span>
+            </p>
+            <input
+              className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              placeholder="Enter Your Name"
+              type="text"
+              name="yourName"
+              value={creatorName}
+              onChange={(e) => setcreatorName(e.target.value)}
               required
             />
           </div>
@@ -143,7 +173,7 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
             />
           </div>
         </div>
-        <div className="bg-[#f4f4f4] rounded shadow-md pr-6 pb-6 h-[225px]">
+        <div className="bg-[#f4f4f4] rounded shadow-md pr-6 pb-6 h-[325px]">
           <div className="p-4">
             <p className="text-xl mb-2 font-bold">
               Enter Amount in Eth{" "}
@@ -158,6 +188,23 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
               name="amount"
               value={amount}
               onChange={(e) => setamount(e.target.value)}
+              required
+            />
+          </div>
+          <div className="p-4">
+            <p className="text-xl mb-2 font-bold">
+              Enter Your Aadhar No{" "}
+              <span className="italic text-slate-500 text-xs">
+              Enter Your Aadhar No for our records
+              </span>
+            </p>
+            <input
+              className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              placeholder="Enter Your Aadhar No"
+              type="text"
+              name="aadharNo"
+              value={creatorAadharNo}
+              onChange={(e) => setcreatorAadharNo(e.target.value)}
               required
             />
           </div>
@@ -182,7 +229,7 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
             />
           </div>
         </div>
-        <div className="bg-[#f4f4f4] rounded shadow-md pr-6 pb-6 h-[225px]">
+        <div className="bg-[#f4f4f4] rounded shadow-md pr-6 pb-6 h-[325px]">
           <div className="p-4">
             <p className="text-xl mb-2 font-bold">
               Enter Execution Duration of Will{" "}
@@ -192,7 +239,6 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
               value={deadline}
               onChange={(e) => setdeadline(e.target.value)}
             >
-              <option value={60 * 5}>5 minutes</option>
               <option value={60 * 15}>15 minutes</option>
               <option value={60 * 60 * 24 * 30 * 3}>3 Months</option>
               <option value={60 * 60 * 24 * 30 * 6}>6 Months</option>
@@ -219,7 +265,7 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
         </div>
         {nomineesEmail.map((nominee, i) => (
           <div
-            className="bg-[#f4f4f4] rounded shadow-md pr-6 pb-6 h-[340px]"
+            className="bg-[#f4f4f4] rounded shadow-md pr-6 pb-6 h-[540px]"
             key={`nominee${i}`}
           >
             <div className="px-4 pt-4">
@@ -247,6 +293,28 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
                 }}
               />
             </div>
+            <div className="px-4 pt-4">
+              <p className="text-xl mb-2 font-bold">
+                Enter Nominee {i + 1} Name
+                <span className="italic text-slate-500 text-xs">
+                  {" "}
+                  Enter Nominee Name for our records
+                </span>
+              </p>
+              <input
+                className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                placeholder="Enter Nominee Address"
+                type="text"
+                name="nominee name"
+                value={nomineeName[i]}
+                required
+                onChange={(e) => {
+                  const newNomineeName = [...nomineeName];
+                  newNomineeName[i] = e.target.value;
+                  setnomineeName(newNomineeName);
+                }}
+              />
+            </div>
             <div className="px-4 pt-2">
               <p className="text-xl mb-2 font-bold">
                 Enter Nominee {i + 1} Email
@@ -265,6 +333,28 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
                   const newNomineesEmail = [...nomineesEmail];
                   newNomineesEmail[i].nomineeEmail = e.target.value;
                   setnomineesEmail(newNomineesEmail);
+                }}
+              />
+            </div>
+            <div className="px-4 pt-4">
+              <p className="text-xl mb-2 font-bold">
+                Enter Nominee {i + 1} Aadhar No.
+                <span className="italic text-slate-500 text-xs">
+                  {" "}
+                  Enter Nominee Aadhar No. for our records
+                </span>
+              </p>
+              <input
+                className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                placeholder="Enter Nominee Aadhar No"
+                type="text"
+                name="nominee aadharNo"
+                value={nomineeAadharNo[i]}
+                required
+                onChange={(e) => {
+                  const newNomineeAadharNo = [...nomineeAadharNo];
+                  newNomineeAadharNo[i] = e.target.value;
+                  setnomineeAadharNo(newNomineeAadharNo);
                 }}
               />
             </div>
