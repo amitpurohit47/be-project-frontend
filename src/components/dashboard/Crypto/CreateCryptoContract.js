@@ -264,6 +264,7 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
               value={deadline}
               onChange={(e) => setdeadline(e.target.value)}
             >
+              <option value={60 * 5}>5 minutes</option>
               <option value={60 * 15}>15 minutes</option>
               <option value={60 * 60 * 24 * 30 * 3}>3 Months</option>
               <option value={60 * 60 * 24 * 30 * 6}>6 Months</option>
