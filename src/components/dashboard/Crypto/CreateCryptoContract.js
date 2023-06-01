@@ -30,6 +30,31 @@ const CreateCryptoContract = ({ setisWillCreated }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    function hasWhiteSpace(s) {
+      return /\s/g.test(s);
+    }
+  
+    function validateEmail(email) {
+      // regular expression to match the email format
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    }
+
+    if (willName === "" || amount === "" || deadline === "" || file === null || nominees === [""] || creatorAadharNo === "" || creatorName === "" || nomineeAadharNo === "" || nomineesEmail === [""]) {
+      toast.error("Please fill all fields");
+      return;
+    } else if (
+      nominees[0].length !== 42 ||
+      hasWhiteSpace(nominees[0]) === true
+    ) {
+      toast.error(
+        "address should contain 42 chars. and \n should not contain space character in it"
+      );
+      return;
+    } else if (validateEmail(nomineesEmail[0].nomineeEmail) === false  || validateEmail(email) === false) {
+      toast.error("Please insert valid email");
+      return;
+    }
     setloading(true);
     try {
       const cid = await storeFiles(file);
